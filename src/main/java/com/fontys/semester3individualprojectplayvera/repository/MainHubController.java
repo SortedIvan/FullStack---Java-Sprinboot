@@ -2,9 +2,12 @@ package com.fontys.semester3individualprojectplayvera.repository;
 
 import com.fontys.semester3individualprojectplayvera.manager.GameManager;
 import com.fontys.semester3individualprojectplayvera.manager.UserManager;
+import org.springframework.stereotype.Repository;
 
 public class MainHubController {
 
+
+    //CLASS IS USED FOR TESTING PURPOSES
 
    private final UserManager userManager;
    private final GameManager gameManager;

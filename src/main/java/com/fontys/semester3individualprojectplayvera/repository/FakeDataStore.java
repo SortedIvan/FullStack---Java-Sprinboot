@@ -2,16 +2,17 @@ package com.fontys.semester3individualprojectplayvera.repository;
 
 import com.fontys.semester3individualprojectplayvera.factory.GameFactory;
 import com.fontys.semester3individualprojectplayvera.factory.UserFactory;
+import com.fontys.semester3individualprojectplayvera.interfaces.IFakeDataStore;
 import com.fontys.semester3individualprojectplayvera.model.Game;
-import com.fontys.semester3individualprojectplayvera.model.GameDeveloper;
-import com.fontys.semester3individualprojectplayvera.model.GameType;
 import com.fontys.semester3individualprojectplayvera.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class FakeDataStore {
+
+@Repository
+public class FakeDataStore implements IFakeDataStore {
     private final UserFactory userFactory = new UserFactory();
     private final GameFactory gameFactory = new GameFactory();
     private final List<Game> games = new ArrayList<>();
@@ -35,112 +36,127 @@ public class FakeDataStore {
 
     }
 
+    @Override
+    public List<Game> getGames(){return this.games;}
+    @Override
+    public List<User> getAllUsers(){return this.users;}
 
-    public void AddGame(String gameName, double gameSize, double gamePrice){
-        this.games.add(this.gameFactory.CreateGame(gameName, gameSize,gamePrice));
-    }
-
-    public void RemoveGame(int index){
-        this.games.remove(index);
-    }
-
-    public void EditGameProperties(String gameName, double gameSize, double gamePrice, int index){
-        this.games.get(index).SetGameName(gameName);
-        this.games.get(index).SetGameSize(gameSize);
-        this.games.get(index).SetGamePrice(gamePrice);
-    }
-
-    public void AddGameType(GameType gameType, int index){
-        this.games.get(index).SetGameTypes(gameType);
-    }
-
-    public void RemoveGameType(int index, int index2){
-        this.games.get(index).GetGameTypes().remove(index2);
-    }
-
-    public Game GetGameFromList(int index){
-        return this.games.get(index);
-    }
-
-    public List<Game> GetAllGames(){
-        return this.games;
-    }
-
-    public Game GetGameByName(String gameName){
-        for(Game game : games){
-            if(game.GetGameName().equals(gameName)){
-                return game;
+    @Override
+    public User GetUserByUsername(String username) {
+        for(User user : users){
+            if(user.GetUsername().equals(username)){
+                return user;
             }
         }
         return null;
     }
 
-    public List<Game> GetGamesByRating(double gameRating){
-        List<Game> gamez = new ArrayList<>();
 
-        for(Game game : games){
-            if(game.GetGameRating() <= gameRating || game.GetGameRating() == gameRating || game.GetGameRating() >= gameRating){
-                gamez.add(game);
-            }
-        }
-        return gamez;
-    }
-
-    public List<Game> GetGamesUnder10(){
-        List<Game> games = new ArrayList<>();
-        for(Game game : games){
-            if(game.GetGamePrice() <= 10){
-                this.games.add(game);
-            }
-        }
-        return games;
-    }
-
-    public List<Game> GetGamesUnder20(){
-        List<Game> games = new ArrayList<>();
-        for(Game game : games){
-            if(game.GetGamePrice() >=10 && game.GetGamePrice() <= 20){
-                games.add(game);
-            }
-        }
-        return games;
-    }
-
-    public User GetUserByUsername(String username){
-        for(User u : users){
-            if(u.GetUsername().equals(username)){
-                return u;
-            }
-        }
-        return null;
-    }
-
-    public List<User> GetAllUsers(){
-        return this.users;
-    }
-
-    public User GetUserByEmail(String email){
-        for(User u : users){
-            if(u.GetEmail().equals(email)){
-                return u;
-            }
-        }
-        return null;
-    }
-
-    public void RemoveUser(int index){
-        this.users.remove(index);
-    }
-
-    public void AddUser(String username, String email, String password, String firstName, String lastName){
-        this.users.add(this.userFactory.CreateUser(username,email,password,firstName,lastName));
-    }
-
-    public void EditUser(String email, String firstName, String lastName, int index){
-        this.users.get(index).SetEmail(email);
-        this.users.get(index).SetFirstName(firstName);
-        this.users.get(index).SetLastName(lastName);
-
-    }
+//    public void AddGame(String gameName, double gameSize, double gamePrice){
+//        this.games.add(this.gameFactory.CreateGame(gameName, gameSize,gamePrice));
+//    }
+//
+//    public void RemoveGame(int index){
+//        this.games.remove(index);
+//    }
+//
+//    public void EditGameProperties(String gameName, double gameSize, double gamePrice, int index){
+//        this.games.get(index).SetGameName(gameName);
+//        this.games.get(index).SetGameSize(gameSize);
+//        this.games.get(index).SetGamePrice(gamePrice);
+//    }
+//
+//    public void AddGameType(GameType gameType, int index){
+//        this.games.get(index).SetGameTypes(gameType);
+//    }
+//
+//    public void RemoveGameType(int index, int index2){
+//        this.games.get(index).GetGameTypes().remove(index2);
+//    }
+//
+//    public Game GetGameFromList(int index){
+//        return this.games.get(index);
+//    }
+//
+//    public List<Game> GetAllGames(){
+//        return this.games;
+//    }
+//
+//    public Game GetGameByName(String gameName){
+//        for(Game game : games){
+//            if(game.GetGameName().equals(gameName)){
+//                return game;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public List<Game> GetGamesByRating(double gameRating){
+//        List<Game> gamez = new ArrayList<>();
+//
+//        for(Game game : games){
+//            if(game.GetGameRating() <= gameRating || game.GetGameRating() == gameRating || game.GetGameRating() >= gameRating){
+//                gamez.add(game);
+//            }
+//        }
+//        return gamez;
+//    }
+//
+//    public List<Game> GetGamesUnder10(){
+//        List<Game> games = new ArrayList<>();
+//        for(Game game : games){
+//            if(game.GetGamePrice() <= 10){
+//                this.games.add(game);
+//            }
+//        }
+//        return games;
+//    }
+//
+//    public List<Game> GetGamesUnder20(){
+//        List<Game> games = new ArrayList<>();
+//        for(Game game : games){
+//            if(game.GetGamePrice() >=10 && game.GetGamePrice() <= 20){
+//                games.add(game);
+//            }
+//        }
+//        return games;
+//    }
+//
+//    public User GetUserByUsername(String username){
+//        for(User u : users){
+//            if(u.GetUsername().equals(username)){
+//                return u;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public List<User> GetAllUsers(){
+//        return this.users;
+//    }
+//
+//    public User GetUserByEmail(String email){
+//        for(User u : users){
+//            if(u.GetEmail().equals(email)){
+//                return u;
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public void RemoveUser(int index){
+//        this.users.remove(index);
+//    }
+//
+//    public void AddUser(String username, String email, String password, String firstName, String lastName){
+//        this.users.add(this.userFactory.CreateUser(username,email,password,firstName,lastName));
+//    }
+//
+//    public void EditUser(String email, String firstName, String lastName, int index){
+//        this.users.get(index).SetEmail(email);
+//        this.users.get(index).SetFirstName(firstName);
+//        this.users.get(index).SetLastName(lastName);
+//
+//    }
 
 }
