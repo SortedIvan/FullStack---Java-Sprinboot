@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>810</x>
+      <y>80</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-username: string;
+-email: string;
+-password: string;
+
+--
++User();
++GetUsername(): string;
++SetUsername(): string;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>610</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enum&gt;&gt;
+GameCategory
+--
+-gameTitle: string;
+-
+
+--
++User();
++GetUsername(): string;
++SetUsername(): string;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>310</y>
+      <w>290</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Content
+--
+-contentTitle: string;
+-contentPrice: double;
+-contentDescription: string
+
+
+
+--
++Game(contentTitle: string, 
+contentPrice: double);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>600</y>
+      <w>380</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+-gameCategory: GameCategory;
+
+
+
+--
++Game(gameCategory: GameCategory) : base()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>970</x>
+      <y>610</y>
+      <w>390</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>GameContent
+--
+-gameTitle: string;
+
+-gamePrice: double;
+
+
+
+--
++Game(gameTitle: string, gameCategory: GameCategory,
+gamePrice: double;)</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
