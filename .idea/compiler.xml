@@ -10,5 +10,6 @@
         <module name="Semester3-Individual-Project-Playvera.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>
