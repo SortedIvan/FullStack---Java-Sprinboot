@@ -20,4 +20,15 @@ public class GameService implements IGameService {
         return this._fakeDataStore.getGames();
     }
 
+    @Override
+    public Game GetGameByName(String gameName) {
+        return this._fakeDataStore.GetGameByName(gameName);
+    }
+
+    @Override
+    public List<Game> GetGamesUnder10() {
+        return this._fakeDataStore.GetGamesUnder10();
+    }
+
+
 }

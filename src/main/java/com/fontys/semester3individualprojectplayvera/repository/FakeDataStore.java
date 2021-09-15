@@ -51,6 +51,28 @@ public class FakeDataStore implements IFakeDataStore {
         return null;
     }
 
+    @Override
+    public Game GetGameByName(String gameName) {
+        for(Game game : games){
+            if(game.GetGameName().equals(gameName)){
+                return game;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Game> GetGamesUnder10() {
+        List<Game> games = new ArrayList<>();
+        for(Game game : games){
+            if(game.GetGamePrice() < 10){
+                games.add(game);
+            }
+        }
+        return games;
+
+    }
+
 
 //    public void AddGame(String gameName, double gameSize, double gamePrice){
 //        this.games.add(this.gameFactory.CreateGame(gameName, gameSize,gamePrice));

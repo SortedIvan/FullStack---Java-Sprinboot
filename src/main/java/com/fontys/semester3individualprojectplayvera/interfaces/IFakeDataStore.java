@@ -10,5 +10,7 @@ public interface IFakeDataStore {
 
     List<User> getAllUsers();
     User GetUserByUsername(String username);
+    Game GetGameByName(String gameName);
+    List<Game> GetGamesUnder10();
 
 }

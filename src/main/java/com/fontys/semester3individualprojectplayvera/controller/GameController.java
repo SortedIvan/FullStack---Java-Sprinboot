@@ -1,5 +1,6 @@
 package com.fontys.semester3individualprojectplayvera.controller;
 import com.fontys.semester3individualprojectplayvera.Service.IGameService;
+import com.fontys.semester3individualprojectplayvera.model.User;
 import com.fontys.semester3individualprojectplayvera.repository.FakeDataStore;
 import com.fontys.semester3individualprojectplayvera.repository.MainHubController;
 
@@ -28,6 +29,30 @@ public class GameController {
             return ResponseEntity.ok().body(games);
         }
         else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("{gameName}")
+    public ResponseEntity<Game> getGameByName(@PathVariable(value = "gameName")String gameName){
+        Game game = this.iGameService.GetGameByName(gameName);
+        if(game != null){
+            return ResponseEntity.ok().body(game);
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/gamesUnder10")
+    public ResponseEntity<List<Game>> GetGamesUnder10(){
+        List<Game> games = this.iGameService.GetGamesUnder10();
+
+        if(games != null){
+            return ResponseEntity.ok().body(games);
+
+        }
+        else {
             return ResponseEntity.notFound().build();
         }
     }
