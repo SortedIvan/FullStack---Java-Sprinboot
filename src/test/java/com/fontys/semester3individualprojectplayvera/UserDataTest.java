@@ -13,7 +13,7 @@ import java.util.List;
 class UserDataTest {
 
     @Test
-    void GetAllUsers_getAllUsersTest() {
+    public void GetAllUsers_getAllUsersTest() {
         UserService userService = new UserService(new FakeDataStore());
         List<User> expectedUsers = userService.GetAllUsers();
         Assertions.assertNotNull(expectedUsers);
@@ -21,13 +21,18 @@ class UserDataTest {
     }
 
     @Test
-    void GetUserByUsername_getUserByUsernameTest(){
+    public void GetUserByUsername_getUserByUsernameTest(){
         UserService userService = new UserService(new FakeDataStore());
         User user = userService.GetUserByUsername("vionev");
 
         Assertions.assertNotNull(user);
     }
 
-    
+    @Test
+    public void ChangeUserPassword_changeUserPasswordTest(){
+        UserService userService = new UserService(new FakeDataStore());
+        userService.ChangeUserPassword("vionev","123456","yoyo");
+        Assertions.assertEquals(userService.GetUserByUsername("vionev").GetPassword(), "yoyo");
+    }
 
 }

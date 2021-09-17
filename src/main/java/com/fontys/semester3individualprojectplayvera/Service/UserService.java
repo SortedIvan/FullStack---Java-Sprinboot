@@ -25,4 +25,9 @@ public class UserService implements IUserService{
         return  iFakeDataStore.GetUserByUsername(username);
     }
 
+    @Override
+    public void ChangeUserPassword(String username, String oldPassword, String newPassword) {
+        iFakeDataStore.ChangeUserPassword(username,oldPassword,newPassword);
+    }
+
 }

@@ -8,5 +8,6 @@ public interface IGameService {
     List<Game> GetAllGames();
     Game GetGameByName(String gameName);
     List<Game> GetGamesUnder10();
+    List<Game> GetGamesUnder20();
 
 }

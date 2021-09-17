@@ -12,7 +12,7 @@ import java.util.List;
 public class GameDataTest {
 
     @Test
-    public void GetAllGames_returnAllGamesTest(){
+    public void GetAllGames_returnAllGamesTest(){ //Checks if getting all games works
     GameService game = new GameService(new FakeDataStore());
     List<Game> expectedGames = game.GetAllGames();
 
@@ -22,17 +22,29 @@ public class GameDataTest {
 }
 
     @Test
-    public void GetGameByName_getGameByNameTest(){
+    public void GetGameByName_getGameByNameTest(){ //Checks if game can be retrieved by name
         GameService game = new GameService(new FakeDataStore());
         Game testGame = game.GetGameByName("CSGO");
 
         Assertions.assertNotNull(testGame);
     }
 
+    @Test
+    public void GetGamesUnder10_getGamesUnder10Test(){ //Checks if you can retrieve games under 10 dollars
+        GameService game = new GameService(new FakeDataStore());
+        List<Game> expectedGames = game.GetGamesUnder10();
+
+        Assertions.assertNotNull(expectedGames);
+    }
 
 
+    @Test
+    public void GetGamesUnder20_getGamesUnder20Test(){ //Checks if you can retrieve games under 20 dollars
+        GameService game = new GameService(new FakeDataStore());
+        List<Game> expectedGames = game.GetGamesUnder20();
 
-
+        Assertions.assertNotNull(expectedGames);
+    }
 
 
 

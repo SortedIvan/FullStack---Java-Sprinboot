@@ -20,8 +20,8 @@ public class FakeDataStore implements IFakeDataStore {
 
     public FakeDataStore(){
 
-        this.games.add(this.gameFactory.CreateGame("CSGO", 500, 20));
-        this.games.add(this.gameFactory.CreateGame("Amnesia", 400, 30));
+        this.games.add(this.gameFactory.CreateGame("CSGO", 500, 9));
+        this.games.add(this.gameFactory.CreateGame("Amnesia", 400, 7));
         this.games.add(this.gameFactory.CreateGame("Halo", 1300, 40));
         this.games.add(this.gameFactory.CreateGame("Legend of Zelda", 200, 35));
 
@@ -31,9 +31,6 @@ public class FakeDataStore implements IFakeDataStore {
                 "Uchiha"));
         this.users.add(this.userFactory.CreateUser("Andrei2", "andrei2@gmail.com", "ooo123", "Andrei",
                 "Petrov"));
-
-
-
     }
 
     @Override
@@ -49,6 +46,14 @@ public class FakeDataStore implements IFakeDataStore {
             }
         }
         return null;
+    }
+
+    @Override
+    public void ChangeUserPassword(String username, String oldPassword, String newPassword) {
+        User user = GetUserByUsername(username);
+        if(user.GetPassword().equals(oldPassword)){
+            user.SetPassword(newPassword);
+        }
     }
 
     @Override
@@ -71,6 +76,17 @@ public class FakeDataStore implements IFakeDataStore {
         }
         return games;
 
+    }
+
+    @Override
+    public List<Game> GetGamesUnder20() {
+        List<Game> games = new ArrayList<>();
+        for(Game game : games){
+            if(game.GetGamePrice() < 20 && game.GetGamePrice() > 10){
+                games.add(game);
+            }
+        }
+        return  games;
     }
 
 

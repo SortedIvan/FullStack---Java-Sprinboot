@@ -30,5 +30,10 @@ public class GameService implements IGameService {
         return this._fakeDataStore.GetGamesUnder10();
     }
 
+    @Override
+    public List<Game> GetGamesUnder20() {
+        return this._fakeDataStore.GetGamesUnder20();
+    }
+
 
 }

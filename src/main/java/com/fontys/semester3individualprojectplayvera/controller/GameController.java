@@ -57,6 +57,17 @@ public class GameController {
         }
     }
 
+    @GetMapping("/gamesUnder20")
+    public ResponseEntity<List<Game>> GetGamesUnder20(){
+        List<Game> games = this.iGameService.GetGamesUnder20();
+        if(games != null){
+            return ResponseEntity.ok().body(games);
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 
