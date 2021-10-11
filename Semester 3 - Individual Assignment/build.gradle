@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "org.sonarqube" version "3.3"
 }
 
 group = 'com.fontys'
@@ -11,6 +12,13 @@ sourceCompatibility = '11'
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "I434292_p-cb-s01-2_AXxuRb-Sp6N4wnlxPdMs"
+        property "sonar.qualitygate.wait", true
     }
 }
 
