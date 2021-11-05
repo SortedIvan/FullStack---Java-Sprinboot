@@ -10,6 +10,7 @@ import com.fontys.sem3gamewebshop.model.Role;
 import com.fontys.sem3gamewebshop.service.IUserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -28,16 +29,24 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController @RequestMapping("/api")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:8001")
 
 public class UserController {
 
     private final IUserService iUserService;
 
+    @Autowired
+    public UserController(IUserService iUserService){
+        this.iUserService = iUserService;
+    }
 
+    @GetMapping("/user/test/{email}")
+    public ResponseEntity<AppUser> getUserByEmail(@PathVariable("email") String email){
+        return ResponseEntity.ok().body(iUserService.findUserByEmail(email));
+    }
     @GetMapping("/user/{username}")
-    public ResponseEntity<AppUser> getUser(@PathVariable("username") String username){return ResponseEntity.ok().body(iUserService.getUser(username));}
+    public ResponseEntity<AppUser> getUser(@PathVariable("username") String username){
+        return ResponseEntity.ok().body(iUserService.getUser(username));}
 
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers(){
@@ -61,6 +70,7 @@ public class UserController {
         iUserService.addRoleToUser(form.getUsername(),form.getRoleName());
         return ResponseEntity.ok().build();
     }
+
 
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -1,11 +1,14 @@
 package com.fontys.sem3gamewebshop.service;
 
+import com.fontys.sem3gamewebshop.dal.IAppUserDAL;
+import com.fontys.sem3gamewebshop.dto.AppUserDTO;
 import com.fontys.sem3gamewebshop.model.AppUser;
 import com.fontys.sem3gamewebshop.model.Role;
 import com.fontys.sem3gamewebshop.repo.RoleRepo;
 import com.fontys.sem3gamewebshop.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,19 +20,44 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
-@Service @RequiredArgsConstructor @Transactional @Slf4j
+@Service @Transactional @Slf4j
 public class UserService implements IUserService, UserDetailsService {
 
-    private final UserRepo userRepo;
-    private final RoleRepo roleRepo;
     private final PasswordEncoder passwordEncoder;
+    private IAppUserDAL dal;
 
+    @Autowired
+    public UserService(IAppUserDAL dal, PasswordEncoder passwordEncoder){
+
+        this.dal = dal;
+        this.passwordEncoder = passwordEncoder;
+    }
+    @Override
+    public AppUserDTO ConvertUserToDTO(AppUser appUser){
+        return dal.ConvertUserToDTO(appUser);
+    }
+
+    @Override
+    public Collection<Role> GetRoles(String username) {
+        return dal.GetRoles(username);
+    }
+
+    @Override
+    public List<AppUserDTO> GetAllUserInformation(){
+        return dal.GetAllUserInformation();
+    }
+    @Override
+    public AppUserDTO GetUserDTO(String username){
+        return dal.GetUserDTO(username);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser user = userRepo.findByUsername(username);
+        AppUser user = dal.getUser(username);
         if(user == null){
             log.error("User not found in the database");
             throw new UsernameNotFoundException("User not found in the database");
@@ -49,23 +77,20 @@ public class UserService implements IUserService, UserDetailsService {
     public AppUser saveUser(AppUser user) {
         log.info("Saving new user {} to db", user.getUsername());
         user.setPassword(passwordEncoder.encode((user.getPassword() )));
-        return userRepo.save(user);
+        return dal.saveUser(user);
     }
 
     @Override
     public Role saveRole(Role role) {
         log.info("Saving new role {} to db", role.getName());
-        return roleRepo.save(role);
+        return dal.saveRole(role);
     }
 
     @Override
     public void addRoleToUser(String username, String roleName) {
 
         log.info("Adding new role {} to user {}", roleName, username);
-        AppUser user = userRepo.findByUsername(username);
-        Role role = roleRepo.findByName(roleName);
-
-        user.getRoles().add(role);
+        dal.addRoleToUser(username,roleName);
 
 
     }
@@ -73,13 +98,28 @@ public class UserService implements IUserService, UserDetailsService {
     @Override
     public AppUser getUser(String username) {
         log.info("Getting user {}", username);
-        return userRepo.findByUsername(username);
+        return dal.getUser(username);
     }
 
     @Override
     public List<AppUser> getUsers() {
         log.info("Getting all users");
-        return userRepo.findAll();
+        return dal.getUsers();
+    }
+
+    @Override
+    public Optional<AppUser> findUserById(Long id) {
+        return findUserById(id);
+    }
+
+    @Override
+    public AppUser findUserByEmail(String email) {
+        return dal.findUserByEmail(email);
+    }
+
+    @Override
+    public void changeUserPassword(String username, String oldPassword, String newPassword) {
+        dal.changeUserPassword(username,oldPassword,newPassword);
     }
 
 

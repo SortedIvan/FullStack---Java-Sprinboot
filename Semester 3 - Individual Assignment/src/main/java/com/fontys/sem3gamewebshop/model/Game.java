@@ -1,5 +1,6 @@
 package com.fontys.sem3gamewebshop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,19 +10,33 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-@Data @AllArgsConstructor @NoArgsConstructor @Entity
+@Data @AllArgsConstructor @NoArgsConstructor @Entity @Table(name = "games")
 public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long Id;
+    @Column(name = "gamename")
     private String gameName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<TypeGame> gameTypes = new ArrayList<>();
-    private double gameRating;
+    @Column(name = "gamesize")
     private double gameSize;
+    @Column(name = "gameprice")
     private double gamePrice;
+    @Column(name = "gameplaytype")
+    private GamePlayType gamePlayType;
+
+    @JsonIgnore
+    @ManyToOne
+    private AppUser appUser;
+
+
+    @ElementCollection
+    private Collection<String> systemRequirements = new ArrayList<>();
 
 
 

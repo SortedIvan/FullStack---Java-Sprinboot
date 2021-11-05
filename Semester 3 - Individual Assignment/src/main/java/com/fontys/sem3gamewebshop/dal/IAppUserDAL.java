@@ -1,15 +1,14 @@
-package com.fontys.sem3gamewebshop.service;
+package com.fontys.sem3gamewebshop.dal;
 
 import com.fontys.sem3gamewebshop.dto.AppUserDTO;
 import com.fontys.sem3gamewebshop.model.AppUser;
 import com.fontys.sem3gamewebshop.model.Role;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserService {
+public interface IAppUserDAL {
     AppUser saveUser(AppUser user);
     Role saveRole(Role role);
     void addRoleToUser(String username,String roleName);
@@ -22,6 +21,4 @@ public interface IUserService {
     List<AppUserDTO> GetAllUserInformation();
     AppUserDTO ConvertUserToDTO(AppUser appUser);
     Collection<Role> GetRoles(String username);
-
 }
-

@@ -8,6 +8,7 @@ import com.fontys.sem3gamewebshop.service.IGameService;
 import com.fontys.sem3gamewebshop.service.IUserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,10 +18,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-@RequiredArgsConstructor
 public class GameController {
 
     private final IGameService iGameService;
+    @Autowired
+    public GameController(IGameService iGameService){
+        this.iGameService = iGameService;
+    }
 
     @GetMapping("/games")
     public ResponseEntity<List<Game>> getGames(){
@@ -35,7 +39,7 @@ public class GameController {
 
     @PostMapping("/typeOfGame/save")
     public ResponseEntity<TypeGame> saveTypeOfGame(@RequestBody TypeGame typeOfGame){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api//role/save").toUriString());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
         return ResponseEntity.created(uri).body(iGameService.saveTypeGame(typeOfGame));
     }
 
