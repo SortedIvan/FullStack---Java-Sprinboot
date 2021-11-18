@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class GameController {
 
     private final IGameService iGameService;
@@ -46,6 +47,12 @@ public class GameController {
     @PostMapping("/typeOfGame/addtogame")
     public ResponseEntity<?> addRoleToUser(@RequestBody TypeToGameForm form){
         iGameService.addTypeGameToGame(form.getGameName(),form.getTypeOfGame());
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/game/deletegame/{id}")
+    public ResponseEntity<?> deleteGameByID(@PathVariable("id") Long id){
+        iGameService.deleteGameById(id);
         return ResponseEntity.ok().build();
     }
 

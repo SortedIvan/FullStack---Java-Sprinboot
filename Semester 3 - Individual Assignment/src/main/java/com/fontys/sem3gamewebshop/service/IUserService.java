@@ -22,6 +22,7 @@ public interface IUserService {
     List<AppUserDTO> GetAllUserInformation();
     AppUserDTO ConvertUserToDTO(AppUser appUser);
     Collection<Role> GetRoles(String username);
+    void deleteUser(String username);
 
 }
 

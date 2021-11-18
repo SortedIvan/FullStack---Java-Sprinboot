@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2021 at 08:45 PM
+-- Generation Time: Nov 18, 2021 at 02:55 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -20,29 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `gamewebshop`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `app_user`
---
-
-CREATE TABLE `app_user` (
-  `id` bigint(20) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `app_user`
---
-
-INSERT INTO `app_user` (`id`, `email`, `name`, `password`, `username`) VALUES
-(4, 'ivan@gmail.com', 'Ivan Ovcharov', '$2a$10$yDcYXlnC3e/UlZZd/tLPmurDvCRzSBZz6p1.4u/l7pIlCGwQ7tOnS', 'ivan2e'),
-(5, 'tom123@gmail.com', 'Hamako Yutai', '$2a$10$pVgJ0mWx.hf57.G5bf6A8eJYk81I.lkoTyV5yx5GEdcQYOjwFV52m', 'hamako'),
-(6, 'boriz@gmail.com', 'Boriz Tunai', '$2a$10$I41PU3ASdZddx55DpN6ndO/UVB8VmTIS.mnlRFMeo34uFwV1N/GDe', 'boriz1');
 
 -- --------------------------------------------------------
 
@@ -65,30 +42,6 @@ INSERT INTO `app_user_roles` (`app_user_id`, `roles_id`) VALUES
 (6, 2),
 (6, 3),
 (6, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `game`
---
-
-CREATE TABLE `game` (
-  `id` bigint(20) NOT NULL,
-  `game_name` varchar(255) DEFAULT NULL,
-  `game_price` double NOT NULL,
-  `game_rating` double NOT NULL,
-  `game_size` double NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `game`
---
-
-INSERT INTO `game` (`id`, `game_name`, `game_price`, `game_rating`, `game_size`) VALUES
-(12, 'Zelda', 19.99, 5, 500),
-(13, 'Halo', 29.99, 4.5, 5010),
-(14, 'Rust', 29.99, 3.4, 2300),
-(15, 'Amnesia', 24.99, 5, 300);
 
 -- --------------------------------------------------------
 
@@ -260,10 +213,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `username`) VALUES
-(4, 'ivan888@gmail.com', 'Ivan Ovcharov', '$2a$10$ApSLQBNICsosa9mgQRsfUOZk1aMWslsRa4698dsj5n3esRYlpZNji', 'ivan2e'),
-(5, 'tom123@gmail.com', 'Hamako Yutai', '$2a$10$bYJXZBWjlARE1Bs6wcdl4.ldQaQoq0c9bdFoQcrM7VBdCcwwaGQ1W', 'hamako'),
-(6, 'boriz@gmail.com', 'Boriz Tunai', '$2a$10$AiU/cOAn/8lvlcOXc5eEY.hRlOwBQnihGvAMNj70sUH55zQkUNyke', 'boriz1'),
-(7, 'ivan@gmail.com', 'Ivan Test', '$2a$10$ta14B9eVuyzPmO.4moxNlOROFVFNb.CPJsror.PZOymtOsZXjRhxe', 'ivantest');
+(4, 'ivan888@gmail.com', 'Ivan Ovcharov', '$2a$10$lwbE7fVAGbC2ynP/hSOgnOx047JCaVwTIhDykUL3l6hzXsqzs0F6O', 'ivan2e'),
+(5, 'tom123@gmail.com', 'Hamako Yutai', '$2a$10$ifrXd4fbKQap7pWqledaz.AJoXIJC48/vG05k9qZbNG7hLyN.kuPW', 'hamako'),
+(6, 'boriz@gmail.com', 'Boriz Tunai', '$2a$10$g82yllmoHLI.7bLOsXUvQ.AJQjw8EQkbbbZM2M4Mms342HMN2nHzC', 'boriz1'),
+(7, 'ivan@gmail.com', 'Ivan Test', '$2a$10$brmz9um0Bs2YXtU3cyjZp.EC1NwJ93Gf2nv/18WdtZCqXgFuDScj.', 'ivantest');
 
 -- --------------------------------------------------------
 
@@ -304,23 +257,11 @@ INSERT INTO `users_roles` (`app_user_id`, `roles_id`) VALUES
 --
 
 --
--- Indexes for table `app_user`
---
-ALTER TABLE `app_user`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `app_user_roles`
 --
 ALTER TABLE `app_user_roles`
   ADD KEY `FK23e7b5jyl3ql41rk3566gywdd` (`roles_id`),
   ADD KEY `FKkwxexnudtp5gmt82j0qtytnoe` (`app_user_id`);
-
---
--- Indexes for table `game`
---
-ALTER TABLE `game`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `games`

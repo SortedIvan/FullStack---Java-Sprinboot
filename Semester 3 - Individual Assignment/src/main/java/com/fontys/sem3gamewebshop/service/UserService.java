@@ -47,6 +47,11 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
+    public void deleteUser(String username) {
+        this.dal.deleteUser(username);
+    }
+
+    @Override
     public List<AppUserDTO> GetAllUserInformation(){
         return dal.GetAllUserInformation();
     }

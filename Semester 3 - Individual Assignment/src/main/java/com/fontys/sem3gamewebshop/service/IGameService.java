@@ -11,6 +11,7 @@ public interface IGameService {
     List<Game> getGamesByPlayType(GamePlayType gamePlayType);
     Game getGame(String gameName);
     List<Game> getGames();
+    void deleteGameById(Long id);
 
 
 }

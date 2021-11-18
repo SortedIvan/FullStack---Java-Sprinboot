@@ -11,8 +11,10 @@ import com.fontys.sem3gamewebshop.service.IUserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -29,8 +31,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:8001")
-
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private final IUserService iUserService;
@@ -40,23 +41,31 @@ public class UserController {
         this.iUserService = iUserService;
     }
 
-    @GetMapping("/user/test/{email}")
+    @GetMapping("/user/email/{email}")
     public ResponseEntity<AppUser> getUserByEmail(@PathVariable("email") String email){
         return ResponseEntity.ok().body(iUserService.findUserByEmail(email));
     }
-    @GetMapping("/user/{username}")
+    @GetMapping("/user/username/{username}")
     public ResponseEntity<AppUser> getUser(@PathVariable("username") String username){
-        return ResponseEntity.ok().body(iUserService.getUser(username));}
+        return ResponseEntity.ok().body(iUserService.getUser(username));
+    }
 
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers(){
         return ResponseEntity.ok().body(iUserService.getUsers());
     }
 
-    @PostMapping("/user/save")
+    @PostMapping("/register")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public ResponseEntity<AppUser> saveUsers(@RequestBody AppUser user){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
-        return ResponseEntity.created(uri).body(iUserService.saveUser(user));
+        if(user == null){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        }else{
+            iUserService.saveUser(user);
+            iUserService.addRoleToUser(user.getUsername(), "ROLE_USER");
+            return ResponseEntity.ok().build();
+        }
     }
 
     @PostMapping("/role/save")
@@ -64,11 +73,23 @@ public class UserController {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/role/save").toUriString());
         return ResponseEntity.created(uri).body(iUserService.saveRole(role));
     }
+    @PostMapping("/user/changepassword")
+    public ResponseEntity<String> changeUserPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String username){
+        iUserService.changeUserPassword(username,oldPassword,newPassword);
+        return ResponseEntity.ok().body("Password changed succesfully");
+    }
 
     @PostMapping("/role/addtouser")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form){
         iUserService.addRoleToUser(form.getUsername(),form.getRoleName());
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/user/delete/{username}")
+    public ResponseEntity<String> deleteUserByUsername(@PathVariable("username") String username){
+        AppUser appUser = iUserService.getUser(username);
+        iUserService.deleteUser(username);
+        return ResponseEntity.ok().body(appUser.getUsername() + " has been deleted");
     }
 
 

@@ -61,4 +61,9 @@ public class GameDALjpa implements IGameDAL {
     public List<Game> getGames() {
         return gameRepo.findAll();
     }
+
+    @Override
+    public void deleteGameById(Long id) {
+        gameRepo.deleteById(id);
+    }
 }

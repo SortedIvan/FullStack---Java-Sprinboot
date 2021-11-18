@@ -95,4 +95,13 @@ public class AppUserDALjpa implements IAppUserDAL {
         AppUser appUser = repository.findByUsername(username);
         return appUser.getRoles();
     }
+
+    @Override
+    public void deleteUser(String username) {
+        for(AppUser appUser : this.repository.findAll()){
+            if(appUser.getUsername().equals(username)){
+                this.repository.delete(appUser);
+            }
+        }
+    }
 }

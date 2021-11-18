@@ -63,4 +63,9 @@ public class GameService implements IGameService{
         log.info("Getting all games");
         return gameDal.getGames();
     }
+
+    @Override
+    public void deleteGameById(Long id) {
+        gameDal.deleteGameById(id);
+    }
 }
