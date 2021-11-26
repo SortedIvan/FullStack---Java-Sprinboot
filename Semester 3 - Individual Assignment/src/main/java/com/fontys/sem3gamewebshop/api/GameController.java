@@ -1,15 +1,17 @@
 package com.fontys.sem3gamewebshop.api;
 
-import com.fontys.sem3gamewebshop.model.AppUser;
-import com.fontys.sem3gamewebshop.model.Game;
-import com.fontys.sem3gamewebshop.model.Role;
-import com.fontys.sem3gamewebshop.model.TypeGame;
+import com.fontys.sem3gamewebshop.dto.GameDTO;
+import com.fontys.sem3gamewebshop.model.*;
 import com.fontys.sem3gamewebshop.service.IGameService;
 import com.fontys.sem3gamewebshop.service.IUserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -22,9 +24,11 @@ import java.util.List;
 public class GameController {
 
     private final IGameService iGameService;
+    private final IUserService iUserService;
     @Autowired
-    public GameController(IGameService iGameService){
+    public GameController(IGameService iGameService, IUserService iUserService){
         this.iGameService = iGameService;
+        this.iUserService = iUserService;
     }
 
     @GetMapping("/games")
@@ -32,10 +36,23 @@ public class GameController {
         return ResponseEntity.ok().body(iGameService.getGames());
     }
 
-    @PostMapping("/game/save")
-    public ResponseEntity<Game> saveGames(@RequestBody Game game){
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/game/save").toUriString());
-        return ResponseEntity.created(uri).body(iGameService.saveGame(game));
+//    @PostMapping("/game/save")
+//    public ResponseEntity<GameDTO> saveGames(@RequestBody GameDTO game){
+//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/game/save").toUriString());
+//        return ResponseEntity.created(uri).body(iGameService.saveGame(game));
+//    }
+    @PostMapping("/savegame")
+    public ResponseEntity<GameDTO> saveGame(@RequestBody GameDTO game){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AppUser loggedInUser = this.iUserService.getUser(authentication.getName());
+        game.setAppUser(loggedInUser.getUsername());
+        if(game == null){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        }else{
+            iGameService.saveGame(game);
+            return ResponseEntity.ok().build();
+        }
     }
 
     @PostMapping("/typeOfGame/save")
@@ -54,6 +71,11 @@ public class GameController {
     public ResponseEntity<?> deleteGameByID(@PathVariable("id") Long id){
         iGameService.deleteGameById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/game/gametypes")
+    public List<GamePlayType> GetAllPlayTypes(){
+        return iGameService.GetAllPlayTypes();
     }
 
 

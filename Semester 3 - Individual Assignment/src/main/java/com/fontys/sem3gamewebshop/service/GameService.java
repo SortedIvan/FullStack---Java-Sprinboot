@@ -1,6 +1,10 @@
 package com.fontys.sem3gamewebshop.service;
 
+import com.fontys.sem3gamewebshop.converters.GameConverter;
+import com.fontys.sem3gamewebshop.dal.IAppUserDAL;
 import com.fontys.sem3gamewebshop.dal.IGameDAL;
+import com.fontys.sem3gamewebshop.dto.GameDTO;
+import com.fontys.sem3gamewebshop.model.AppUser;
 import com.fontys.sem3gamewebshop.model.Game;
 import com.fontys.sem3gamewebshop.model.GamePlayType;
 import com.fontys.sem3gamewebshop.model.TypeGame;
@@ -22,17 +26,36 @@ import java.util.List;
 public class GameService implements IGameService{
 
     IGameDAL gameDal;
-
+    IAppUserDAL userDal;
+    GameConverter gameConverter;
     @Autowired
-    public GameService(IGameDAL gameDal){
+    public GameService(IGameDAL gameDal, IAppUserDAL userDal, GameConverter gameConverter){
         this.gameDal = gameDal;
+        this.userDal = userDal;
+        this.gameConverter = gameConverter;
     }
 
 
+
+
     @Override
-    public Game saveGame(Game game) {
-        log.info("Saving new game {} to db", game.getGameName());
-        return gameDal.saveGame(game);
+    public Game saveGame(GameDTO gameDTO) {
+//        log.info("Saving new game {} to db", gameDTO.getGameName());
+//        return gameDal.saveGame(gameDTO);
+        AppUser appUser = this.userDal.getUser(gameDTO.getAppUser());
+        if(appUser != null)
+        {
+            Game entity = gameConverter.dtoToEntity(gameDTO);
+            entity.setAppUser(appUser);
+//            appUser.getGameIDs(entity.getId())
+            gameDal.saveGame(entity);
+        }
+        return null;
+    }
+
+    @Override
+    public List<GamePlayType> GetAllPlayTypes() {
+        return gameDal.GetAllPlayTypes();
     }
 
     @Override

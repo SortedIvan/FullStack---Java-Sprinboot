@@ -1,5 +1,6 @@
 package com.fontys.sem3gamewebshop;
 
+import com.fontys.sem3gamewebshop.dto.GameDTO;
 import com.fontys.sem3gamewebshop.model.*;
 import com.fontys.sem3gamewebshop.service.IGameService;
 import com.fontys.sem3gamewebshop.service.IUserService;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class Sem3gamewebshopApplication {
@@ -47,23 +49,31 @@ public class Sem3gamewebshopApplication {
             iUserService.addRoleToUser("boriz1", "ROLE_USER");
             iUserService.addRoleToUser("ivantest", "ROLE_ADMIN");
 
+            List<String> systemRequirements1 = List.of(
+              "2GB free space"
+            );
+            igameService.saveGame(new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.SinglePlayer,systemRequirements1));
+            igameService.saveGame(new GameDTO("Rust", 500, 40, "Survival", ivanTest.getUsername(), GamePlayType.Multiplayer,systemRequirements1));
+            igameService.saveGame(new GameDTO("Zelda", 1000, 20, "Adventure", ivanTest.getUsername(), GamePlayType.SinglePlayer,systemRequirements1));
+
+
             //Game creation
-            igameService.saveTypeGame(new TypeGame(null,"ARCADE"));
-            igameService.saveTypeGame(new TypeGame(null,"HORROR"));
-            igameService.saveTypeGame(new TypeGame(null,"SCI_FI"));
-            igameService.saveTypeGame(new TypeGame(null,"ADVENTURE"));
-            igameService.saveTypeGame(new TypeGame(null,"SURVIVAL"));
+//            igameService.saveTypeGame(new TypeGame(null,"ARCADE"));
+//            igameService.saveTypeGame(new TypeGame(null,"HORROR"));
+//            igameService.saveTypeGame(new TypeGame(null,"SCI_FI"));
+//            igameService.saveTypeGame(new TypeGame(null,"ADVENTURE"));
+//            igameService.saveTypeGame(new TypeGame(null,"SURVIVAL"));
 
-            igameService.saveGame(new Game(null, "Mario", new ArrayList<>(), 500, 19.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>()));
-            igameService.saveGame(new Game(null, "Zelda", new ArrayList<>(), 400, 29.99, GamePlayType.Multiplayer, ivanTest, new ArrayList<>()));
-            igameService.saveGame(new Game(null, "AdventureGame", new ArrayList<>(), 900, 39.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>()));
-            igameService.saveGame(new Game(null, "Rust", new ArrayList<>(), 1000, 59.99, GamePlayType.Multiplayer, ivanTest, new ArrayList<>()));
+//            igameService.saveGame(new Game(null, "Mario", new ArrayList<>(), 500, 19.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>()));
+//            igameService.saveGame(new Game(null, "Zelda", new ArrayList<>(), 400, 29.99, GamePlayType.Multiplayer, ivanTest, new ArrayList<>()));
+//            igameService.saveGame(new Game(null, "AdventureGame", new ArrayList<>(), 900, 39.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>()));
+//            igameService.saveGame(new Game(null, "Rust", new ArrayList<>(), 1000, 59.99, GamePlayType.Multiplayer, ivanTest, new ArrayList<>()));
 
-            igameService.addTypeGameToGame("Zelda","ADVENTURE");
-            igameService.addTypeGameToGame("Mario","SCI_FI");
-            igameService.addTypeGameToGame("AdventureGame","SURVIVAL");
-            igameService.addTypeGameToGame("AdventureGame","HORROR");
-            igameService.addTypeGameToGame("Rust","ADVENTURE");
+//            igameService.addTypeGameToGame("Zelda","ADVENTURE");
+//            igameService.addTypeGameToGame("Mario","SCI_FI");
+//            igameService.addTypeGameToGame("AdventureGame","SURVIVAL");
+//            igameService.addTypeGameToGame("AdventureGame","HORROR");
+//            igameService.addTypeGameToGame("Rust","ADVENTURE");
 
         };
     }

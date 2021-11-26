@@ -20,9 +20,8 @@ public class Game {
     @Column(name = "gamename")
     private String gameName;
 
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<TypeGame> gameTypes = new ArrayList<>();
+    @Column(name = "gameType")
+    private String gameType;
     @Column(name = "gamesize")
     private double gameSize;
     @Column(name = "gameprice")

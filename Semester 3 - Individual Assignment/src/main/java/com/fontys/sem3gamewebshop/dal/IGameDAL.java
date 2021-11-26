@@ -14,5 +14,6 @@ public interface IGameDAL{
     Game getGame(String gameName);
     List<Game> getGames();
     void deleteGameById(Long id);
+    List<GamePlayType> GetAllPlayTypes();
 
 }

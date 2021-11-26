@@ -65,7 +65,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(GET, "/api/user/delete/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(POST, "/api/user/changepassword").hasAnyAuthority("ROLE_GAMEDEV", "ROLE_USER", "ROLE_ADMIN");
         http.authorizeRequests().antMatchers(DELETE,"/api/game/deletegame/**").permitAll();
-
+        http.authorizeRequests().antMatchers(POST, "/api/savegame").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/game/gametypes").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);

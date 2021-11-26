@@ -35,21 +35,22 @@ public class GameDALjpa implements IGameDAL {
 
     @Override
     public void addTypeGameToGame(String gameName, String typeGame) {
-        Game game = gameRepo.findByGameName(gameName);
-        TypeGame typeGame1 = typeGameRepo.findByName(typeGame);
-        game.getGameTypes().add(typeGame1);
+//        Game game = gameRepo.findByGameName(gameName);
+//        TypeGame typeGame1 = typeGameRepo.findByName(typeGame);
+//        game.getGameTypes().add(typeGame1);
     }
 
     @Override
     public List<Game> getGamesByPlayType(GamePlayType gamePlayType) {
-        List<Game> games = gameRepo.findAll();
-        List<Game> returnableList = new ArrayList<>();
-        for(Game game : games){
-            if(game.getGameTypes().equals(gamePlayType)){
-                returnableList.add(game);
-            }
-        }
-        return returnableList;
+//        List<Game> games = gameRepo.findAll();
+//        List<Game> returnableList = new ArrayList<>();
+//        for(Game game : games){
+//            if(game.getGameTypes().equals(gamePlayType)){
+//                returnableList.add(game);
+//            }
+//        }
+//        return returnableList;
+        return null;
     }
 
     @Override
@@ -65,5 +66,13 @@ public class GameDALjpa implements IGameDAL {
     @Override
     public void deleteGameById(Long id) {
         gameRepo.deleteById(id);
+    }
+
+    @Override
+    public List<GamePlayType> GetAllPlayTypes() {
+        List<GamePlayType> playTypes = new ArrayList<>();
+        playTypes.add(GamePlayType.SinglePlayer);
+        playTypes.add(GamePlayType.Multiplayer);
+        return playTypes;
     }
 }
