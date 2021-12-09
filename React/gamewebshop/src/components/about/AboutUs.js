@@ -15,7 +15,7 @@ const AboutUs = (props) => {
   }
 
   return (
-    <div className={styles['Hero']}>
+    <div className={styles['Hero']} id = "container">
       <img
         alt={props.image_alt}
         src={props.image_src}

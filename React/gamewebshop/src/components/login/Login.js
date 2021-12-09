@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { useHistory } from "react-router";
 import AuthService from "../../services/auth.service";
 import Home from "../home/Home";
-import '/React and Backend GIT/semester3-individual-assignment/React - Individual Assignment/gamewebshop/src/components/login/Login.module.css';
 const SignIn = () => {
         const [msg, setMsg] = React.useState(null);
         const History = useHistory();
@@ -31,7 +30,7 @@ const SignIn = () => {
                 justifyContent: 'center',
                 alignItems: 'top',
                 height: '10vh'
-                }}>
+                }} id="loginContainer">
                 <form onSubmit={handleLogin}>
                 <h3>Sign In</h3>
 

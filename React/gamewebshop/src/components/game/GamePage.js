@@ -2,8 +2,6 @@ import {React, useState, useEffect} from 'react';
 import { CardDeck } from 'reactstrap';
 import GameService from '../../services/GameService';
 import GameList from './GameList';
-import "/React and Backend GIT/semester3-individual-assignment/React - Individual Assignment/gamewebshop/src/components/game/GamePage.module.css";
-import styles from "./GamePage.module.css";
 import SearchBar from "material-ui-search-bar";
 function GamePage() {
     const [games, setGames] = useState(null);
@@ -30,7 +28,7 @@ function GamePage() {
       }
 
     return (
-        <div className = {styles.main_container}>
+        <div id="allGames">
             
             <CardDeck><GameList games ={games} onDelete = {DeleteGame}></GameList></CardDeck>
             

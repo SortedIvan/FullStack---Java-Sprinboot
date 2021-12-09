@@ -34,8 +34,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "cypress open",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "cypress": "^9.1.1",
+    "cypress-localstorage-commands": "^1.6.1"
   },
   "eslintConfig": {
     "extends": [
