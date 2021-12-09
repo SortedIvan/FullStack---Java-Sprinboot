@@ -53,8 +53,8 @@ public class AppUserDALjpa implements IAppUserDAL {
     }
 
     @Override
-    public Optional<AppUser> findUserById(Long id) {
-        return this.repository.findById(id);
+    public AppUser findUserById(Long id) {
+        return this.repository.findById(id).get();
     }
 
     @Override
@@ -97,11 +97,26 @@ public class AppUserDALjpa implements IAppUserDAL {
     }
 
     @Override
-    public void deleteUser(String username) {
+    public void deleteUser(Long id) {
         for(AppUser appUser : this.repository.findAll()){
-            if(appUser.getUsername().equals(username)){
+            if(appUser.getId().equals(id)){
                 this.repository.delete(appUser);
             }
         }
+    }
+
+    @Override
+    public boolean editUser(AppUser appUser) {
+        AppUser updatedUser = this.findUserById(appUser.getId());
+        updatedUser.setUsername(appUser.getUsername());
+        updatedUser.setEmail(appUser.getEmail());
+        updatedUser.setName(appUser.getName());
+        updatedUser.setGameIDs(appUser.getGameIDs());
+        updatedUser.setPassword(appUser.getPassword());
+        updatedUser.setRoles(appUser.getRoles());
+        updatedUser.setId(appUser.getId());
+        updatedUser.setGameIDs(appUser.getGameIDs());
+        this.repository.save(updatedUser);
+        return true;
     }
 }

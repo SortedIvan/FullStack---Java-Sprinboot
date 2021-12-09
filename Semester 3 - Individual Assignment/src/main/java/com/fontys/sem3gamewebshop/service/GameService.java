@@ -59,6 +59,16 @@ public class GameService implements IGameService{
     }
 
     @Override
+    public List<Game> GetGamesByUser(Long id) {
+        return gameDal.GetGamesByUser(id);
+    }
+
+    @Override
+    public List<Game> GetGamesByName(String name) {
+        return gameDal.GetGamesByName(name);
+    }
+
+    @Override
     public TypeGame saveTypeGame(TypeGame typeGame) {
         log.info("Saving new type of game {} to db", typeGame.getName());
         return gameDal.saveTypeGame(typeGame);

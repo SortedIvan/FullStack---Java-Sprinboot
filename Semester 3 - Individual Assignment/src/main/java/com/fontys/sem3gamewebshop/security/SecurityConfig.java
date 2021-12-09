@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login");
         http.csrf().disable();
 
+
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/user/**").permitAll();
@@ -62,11 +63,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(POST, "/api/role/addtouser").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(GET, "/api/user/username/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(GET,"/api/user/email/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET, "/api/user/delete/**").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(POST, "/api/user/changepassword").hasAnyAuthority("ROLE_GAMEDEV", "ROLE_USER", "ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(DELETE, "/api/user/delete/**").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers(POST, "/api/user/changepassword").permitAll();
         http.authorizeRequests().antMatchers(DELETE,"/api/game/deletegame/**").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/savegame").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/game/gametypes").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/user/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/user/username/**").permitAll();
+        http.authorizeRequests().antMatchers(PUT, "/api/user/edit").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/game/mygames/**").permitAll();
+        http.authorizeRequests().antMatchers("/chat/**").permitAll();
+        http.authorizeRequests().antMatchers("/api/games/find/**").permitAll();
+
 
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);

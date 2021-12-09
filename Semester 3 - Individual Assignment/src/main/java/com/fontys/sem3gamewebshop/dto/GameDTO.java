@@ -18,8 +18,9 @@ public class GameDTO {
     private String gameName;
     private double gameSize;
     private double gamePrice;
-    private String gamePlayType;
+    private String gameType;
     private String appUser;
     private GamePlayType gamePlayVariant;
     private Collection<String> systemRequirements = new ArrayList<>();
+    private String description;
 }

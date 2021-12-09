@@ -7,6 +7,7 @@ import com.fontys.sem3gamewebshop.model.TypeGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,17 +41,19 @@ public class GameDALjpa implements IGameDAL {
 //        game.getGameTypes().add(typeGame1);
     }
 
+
+
     @Override
     public List<Game> getGamesByPlayType(GamePlayType gamePlayType) {
-//        List<Game> games = gameRepo.findAll();
-//        List<Game> returnableList = new ArrayList<>();
-//        for(Game game : games){
-//            if(game.getGameTypes().equals(gamePlayType)){
-//                returnableList.add(game);
-//            }
-//        }
-//        return returnableList;
-        return null;
+        List<Game> games = gameRepo.findAll();
+        List<Game> returnableList = new ArrayList<>();
+        for(Game game : games){
+            if(game.getGamePlayType().equals(gamePlayType)){
+                returnableList.add(game);
+            }
+        }
+        return returnableList;
+
     }
 
     @Override
@@ -75,4 +78,33 @@ public class GameDALjpa implements IGameDAL {
         playTypes.add(GamePlayType.Multiplayer);
         return playTypes;
     }
+
+    @Override
+    public List<Game> GetGamesByUser(Long id) {
+        return gameRepo.FindGamesByUserID(id);
+    }
+
+//    @Override
+//    public List<Game> GetGamesByName(String name) {
+//        List<Game> games = this.gameRepo.findAll();
+//        List<Game> returnGames = new ArrayList<>();
+//        for (Game game : games){
+//            if(game.getGameName().equals(name)){
+//                returnGames.add(game);
+//            }
+//        }
+//        return returnGames;
+//    }
+//
+@Override
+public List<Game> GetGamesByName(String name) {
+    List<Game> games = this.gameRepo.findAll();
+    List<Game> returnGames = new ArrayList<>();
+    for (Game game : games){
+        if(game.getGameName().contains(name)){
+            returnGames.add(game);
+        }
+    }
+    return returnGames;
+}
 }

@@ -15,7 +15,7 @@ public interface IGameService {
     void deleteGameById(Long id);
     Game saveGame(GameDTO gameDTO);
     List<GamePlayType> GetAllPlayTypes();
-
-
+    List<Game> GetGamesByUser(Long id);
+    List<Game> GetGamesByName(String name);
 
 }

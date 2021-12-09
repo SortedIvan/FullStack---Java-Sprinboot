@@ -47,8 +47,15 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public void deleteUser(String username) {
-        this.dal.deleteUser(username);
+    public void deleteUser(Long id) {
+        this.dal.deleteUser(id);
+    }
+
+    @Override
+    public boolean editUser(AppUser appUser) {
+        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+        this.dal.editUser(appUser);
+        return true;
     }
 
     @Override
@@ -79,10 +86,12 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public AppUser saveUser(AppUser user) {
+    public void saveUser(AppUser user) {
+
         log.info("Saving new user {} to db", user.getUsername());
         user.setPassword(passwordEncoder.encode((user.getPassword() )));
-        return dal.saveUser(user);
+        dal.saveUser(user);
+        dal.addRoleToUser(user.getUsername(),"ROLE_USER");
     }
 
     @Override

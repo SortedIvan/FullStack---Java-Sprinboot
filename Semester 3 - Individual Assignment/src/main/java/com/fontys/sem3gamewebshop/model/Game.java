@@ -28,6 +28,8 @@ public class Game {
     private double gamePrice;
     @Column(name = "gameplaytype")
     private GamePlayType gamePlayType;
+    @Column(name = "description")
+    private String description;
 
     @JsonIgnore
     @ManyToOne

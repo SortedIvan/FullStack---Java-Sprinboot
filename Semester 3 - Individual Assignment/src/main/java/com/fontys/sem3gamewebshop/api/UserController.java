@@ -50,6 +50,19 @@ public class UserController {
         return ResponseEntity.ok().body(iUserService.getUser(username));
     }
 
+
+    @PutMapping("/user/edit")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_GAMEDEV') or hasRole('ROLE_ADMIN')")
+    public ResponseEntity<AppUser> editUser(@RequestBody AppUser appUser){
+        if(this.iUserService.editUser(appUser)){
+            return ResponseEntity.ok().build();
+        }
+        else{
+            return new ResponseEntity("Please provide a valid username", HttpStatus.NOT_FOUND);
+        }
+    }
+
+
     @GetMapping("/users")
     public ResponseEntity<List<AppUser>> getUsers(){
         return ResponseEntity.ok().body(iUserService.getUsers());
@@ -74,8 +87,8 @@ public class UserController {
         return ResponseEntity.created(uri).body(iUserService.saveRole(role));
     }
     @PostMapping("/user/changepassword")
-    public ResponseEntity<String> changeUserPassword(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String username){
-        iUserService.changeUserPassword(username,oldPassword,newPassword);
+    public ResponseEntity<String> changeUserPassword(@RequestBody ChangePassword changePassword){
+        iUserService.changeUserPassword(changePassword.getUsername(),changePassword.getOldPassword(),changePassword.getNewPassword());
         return ResponseEntity.ok().body("Password changed succesfully");
     }
 
@@ -85,11 +98,10 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/user/delete/{username}")
-    public ResponseEntity<String> deleteUserByUsername(@PathVariable("username") String username){
-        AppUser appUser = iUserService.getUser(username);
-        iUserService.deleteUser(username);
-        return ResponseEntity.ok().body(appUser.getUsername() + " has been deleted");
+    @DeleteMapping("/user/delete/{id}")
+    public ResponseEntity<?> deleteUserByUsername(@PathVariable("id") Long id){
+        iUserService.deleteUser(id);
+        return ResponseEntity.ok().build();
     }
 
 
@@ -150,4 +162,11 @@ public class UserController {
 class RoleToUserForm{
     private String username;
     private String roleName;
+}
+
+@Data
+class ChangePassword{
+    private String username;
+    private String oldPassword;
+    private String newPassword;
 }

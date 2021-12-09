@@ -14,12 +14,13 @@ public interface IAppUserDAL {
     void addRoleToUser(String username,String roleName);
     AppUser getUser(String username);
     List<AppUser> getUsers();
-    Optional<AppUser> findUserById(Long id);
+    AppUser findUserById(Long id);
     AppUser findUserByEmail(String email);
     void changeUserPassword(String username,String oldPassword, String newPassword);
     AppUserDTO GetUserDTO(String username);
     List<AppUserDTO> GetAllUserInformation();
     AppUserDTO ConvertUserToDTO(AppUser appUser);
     Collection<Role> GetRoles(String username);
-    void deleteUser(String username);
+    void deleteUser(Long id);
+    boolean editUser(AppUser appUser);
 }

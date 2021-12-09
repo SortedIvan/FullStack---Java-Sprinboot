@@ -33,24 +33,24 @@ public class GameServiceMockTest {
     IGameDAL gameDAL;
     @Mock
     IAppUserDAL iAppUserDAL;
-
+//null, "Mario", "Adventure", 500, 19.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList()
     @Mock
     GameConverter gameConverter;
     @BeforeEach
     public void setUp(){
         AppUser ivanTest = new AppUser(null, "Ivan Test", "ivantest", "ivan@gmail.com", "12345", new ArrayList<>(), new ArrayList<>());
         List<Game> games = List.of(
-                new Game(null, "Mario", "Adventure", 500, 19.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>()),
-                new Game(null, "Zelda", "Adventure", 400, 29.99, GamePlayType.Multiplayer, ivanTest, new ArrayList<>()),
-                new Game(null, "AdventureGame", "Action", 900, 39.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>()),
-                new Game(null, "Rust", "Survival", 1000, 59.99, GamePlayType.Multiplayer, ivanTest, new ArrayList<>())
+                new Game(null, "Mario", "Adventure", 500, 19.99, GamePlayType.SinglePlayer,"A true classic, enjoy the beauty of jumping on goombas and saving the princess!", ivanTest,new ArrayList<>()),
+                new Game(null, "Zelda", "Adventure", 400, 29.99, GamePlayType.Multiplayer,"For sword lovers, this game will let you embark on epic quests in the land of Zelda!", ivanTest, new ArrayList<>()),
+                new Game(null, "AdventureGame", "Action", 900, 39.99, GamePlayType.SinglePlayer,"The title says it all!", ivanTest, new ArrayList<>()),
+                new Game(null, "Rust", "Survival", 1000, 59.99, GamePlayType.Multiplayer,"Rust - naked, scared..and a rock in your hands?", ivanTest, new ArrayList<>())
 
 
 
         );
 
-        Game game = new Game(null, "Mario", "Adventure", 500, 19.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>());
-        Game game2 =  new Game(null, "AdventureGame", "Action", 900, 39.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList<>());
+        Game game = new Game(null, "Mario", "Adventure", 500, 19.99, GamePlayType.SinglePlayer,"A true classic, enjoy the beauty of jumping on goombas and saving the princess!", ivanTest, new ArrayList<>());
+        Game game2 =  new Game(null, "AdventureGame", "Action", 900, 39.99, GamePlayType.SinglePlayer,"The title says it all!", ivanTest, new ArrayList<>());
         List<Game> testGames = new ArrayList<>();
         testGames.add(game);
         List<Game> testGames2 = new ArrayList<>();
@@ -86,7 +86,7 @@ public class GameServiceMockTest {
     public void saveGame(){
         GameService gameService = new GameService(gameDAL, iAppUserDAL, gameConverter);
         AppUser ivanTest = new AppUser(null, "Ivan Test", "ivantest", "ivan@gmail.com", "12345", new ArrayList<>(), new ArrayList<>());
-        GameDTO game = new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.Multiplayer,new ArrayList<>());
+        GameDTO game = new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.Multiplayer,new ArrayList<>(),"A true classic, enjoy the beauty of jumping on goombas and saving the princess!");
         gameService.saveGame(game);
         ArgumentCaptor<Game> gameArgumentCaptor = ArgumentCaptor.forClass(Game.class);
         verify(gameDAL).saveGame(gameArgumentCaptor.capture());

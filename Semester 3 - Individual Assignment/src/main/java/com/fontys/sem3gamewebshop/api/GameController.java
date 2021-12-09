@@ -62,7 +62,7 @@ public class GameController {
     }
 
     @PostMapping("/typeOfGame/addtogame")
-    public ResponseEntity<?> addRoleToUser(@RequestBody TypeToGameForm form){
+    public ResponseEntity<?> addTypeGameToGame(@RequestBody TypeToGameForm form){
         iGameService.addTypeGameToGame(form.getGameName(),form.getTypeOfGame());
         return ResponseEntity.ok().build();
     }
@@ -74,11 +74,19 @@ public class GameController {
     }
 
     @GetMapping("/game/gametypes")
-    public List<GamePlayType> GetAllPlayTypes(){
-        return iGameService.GetAllPlayTypes();
+    public ResponseEntity<List<GamePlayType>> GetAllPlayTypes(){
+        return ResponseEntity.ok().body(iGameService.GetAllPlayTypes());
     }
 
+    @GetMapping("/game/mygames/{id}")
+    public ResponseEntity<List<Game>> GetGamesByUserID(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(iGameService.GetGamesByUser(id));
+    }
 
+    @GetMapping("/games/find/{name}")
+    public ResponseEntity<List<Game>> GetGamesByName(@PathVariable("name") String name){
+        return ResponseEntity.ok().body(iGameService.GetGamesByName(name));
+    }
 
 
 }

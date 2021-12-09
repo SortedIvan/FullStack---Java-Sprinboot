@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
-    AppUser saveUser(AppUser user);
+    void saveUser(AppUser user);
     Role saveRole(Role role);
     void addRoleToUser(String username,String roleName);
     AppUser getUser(String username);
@@ -22,7 +22,8 @@ public interface IUserService {
     List<AppUserDTO> GetAllUserInformation();
     AppUserDTO ConvertUserToDTO(AppUser appUser);
     Collection<Role> GetRoles(String username);
-    void deleteUser(String username);
+    void deleteUser(Long id);
+    boolean editUser(AppUser appUser);
 
 }
 
