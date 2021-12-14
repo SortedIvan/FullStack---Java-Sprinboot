@@ -64,20 +64,34 @@ import "cypress-localstorage-commands";
 //     });
 // });
 
-Cypress.Commands.add('logInAs3', (Useremail, Userpwd) => {
-    cy.request({
-      method: 'POST',
-      url: `${Cypress.env('EXTERNAL_API')}login`,
-      body: {
-        user: {
-          username: Useremail,
-          password: Userpwd,
-        }
-      }
-    })
-      .its('body')
-      .then((body) => {
-        window.localStorage.setItem('accessToken', body.data.data.accessToken);
-        window.localStorage.setItem('refreshToken', body.data.data.accessToken);
-      })
-  });
+// Cypress.Commands.add('logInAs3', (Useremail, Userpwd) => {
+//     cy.request({
+//       method: 'POST',
+//       url: `${Cypress.env('EXTERNAL_API')}login`,
+//       body: {
+//         user: {
+//           username: Useremail,
+//           password: Userpwd,
+//         }
+//       }
+//     })
+//       .its('body')
+//       .then((body) => {
+//         window.localStorage.setItem('accessToken', body.data.data.accessToken);
+//         window.localStorage.setItem('refreshToken', body.data.data.accessToken);
+//       })
+//   });
+
+Cypress.Commands.add('login', (username, password) => {
+  var reqBody = "username="+username+"&password="+password+"&grant_type=password";
+      cy.request({
+          method: 'POST',
+          url: 'http://localhost:8080/api/login',
+          headers:{
+              'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          },
+          body: reqBody
+        }).then(({ body }) => {
+          window.localStorage.setItem("user", JSON.stringify(body))
+  })
+})

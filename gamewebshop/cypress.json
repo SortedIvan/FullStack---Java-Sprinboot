@@ -1,6 +1,7 @@
 {
     "baseUrl" : "http://localhost:3000",
     "experimentalStudio" : true,
+    "experimentalSessionSupport" : true,
 
      "env": {
           "EXTERNAL_API": "https://localhost:8080/api/"
