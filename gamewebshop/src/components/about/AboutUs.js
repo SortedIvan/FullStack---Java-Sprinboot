@@ -25,11 +25,11 @@ const AboutUs = (props) => {
         <h1 className={styles['text']}>{props.heading}</h1>
         <h2 className={styles['text1']}>{props.heading1}</h2>
         <div className={styles['BtnGroup']}>
-          <button onClick = {onGetStartedClick}
+          <button onClick = {onGetStartedClick} id = "gamesbutton"
             className={` ${styles['button']} ${projectStyles['button']} `}
           >
             {props.button}
-          </button>
+          </button >
         </div>
         <span className={styles['text2']}>
           <span>

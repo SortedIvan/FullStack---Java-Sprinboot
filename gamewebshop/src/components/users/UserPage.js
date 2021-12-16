@@ -31,7 +31,7 @@ function UserPage() {
         <section>
             {/* <h1>All Users</h1>
             <CardDeck style={{display: 'flex', flexDirection: 'row'}}><UserList users ={users} onDelete = {DeleteUser}></UserList></CardDeck> */}
-            <UserTable users = {users}/>
+            <UserTable users = {users} id = "datatable"/>
             
         </section>
 

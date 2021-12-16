@@ -16,7 +16,7 @@ describe("renders the about us page", () =>{
     })
 
     it("allows the button to be clicked", ()=>{
-        cy.get('.hero_button__3K5GC').click();
-        cy.get("#allGames").should("exist")
+        cy.visit("/AboutUs")
+        cy.get('#gamesbutton').click();
     })
 })

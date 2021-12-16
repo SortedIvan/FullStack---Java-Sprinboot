@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 // import unnamed from '.../public/unnamed.png'
 import PositionedSnackbar from '../alerts/PositionedSnackbar';
 import Snackbar from '@mui/material/Snackbar';
+import BasicRating from '../rating/BasicRating';
 
 function GameItem(props){
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ function GameItem(props){
     return (    
               <Grid item key={props.game.gameName} xs={10} sm={3} md={4}>
                 <Card
-                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} id = "gamecontainer"
                 >
                   <CardMedia
                     component="img"
@@ -60,10 +61,11 @@ function GameItem(props){
                       <br/>
                       <b>{props.game.gameType}</b>
                     </Typography>
+                    <BasicRating/>
                   </CardContent>
                   <CardActions>
                     <Button size="small" onClick = {togglePopup}>Does <br/> it run?</Button>
-                    {isOpen && <Popup
+                    {isOpen && <Popup id = "systemrequirements"
                       content={<>
                        <b>System requirements</b>
                        <br/>

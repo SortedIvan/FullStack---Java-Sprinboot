@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(POST, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers("/api/register").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/users").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(GET, "/api/games").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER","ROLE_GAMEDEV");
+        http.authorizeRequests().antMatchers(GET, "/api/games").permitAll();
         http.authorizeRequests().antMatchers(POST, "/api/game/save").hasAnyAuthority("ROLE_ADMIN", "ROLE_GAMEDEV");
         http.authorizeRequests().antMatchers(POST, "/api/typeOfGame/save").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(POST, "/api/typeOfGame/addtogame").hasAnyAuthority("ROLE_ADMIN", "ROLE_GAMEDEV");

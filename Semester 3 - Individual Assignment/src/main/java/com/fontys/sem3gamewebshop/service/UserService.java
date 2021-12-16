@@ -53,7 +53,6 @@ public class UserService implements IUserService, UserDetailsService {
 
     @Override
     public boolean editUser(AppUser appUser) {
-        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
         this.dal.editUser(appUser);
         return true;
     }

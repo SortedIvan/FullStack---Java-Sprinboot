@@ -40,7 +40,7 @@ import authService from '../../services/auth.service';
   const history = useHistory();
 
 
-  const handleSubmitButton = (profile) => {
+  const handleSubmitForm = (profile) => {
       userService.editUser(profile);
       
       console.log(profile);
@@ -53,6 +53,7 @@ import authService from '../../services/auth.service';
       autoComplete="off"
       noValidate
       {...props}
+      onClick = {handleSubmitForm(profile)}
     >
         <Card {...props}>
       <CardContent>
@@ -184,7 +185,7 @@ import authService from '../../services/auth.service';
             p: 2
           }}
         >
-          <Button onClick = {handleSubmitButton(profile)}
+          <Button
             color="primary"
             variant="contained"
           >

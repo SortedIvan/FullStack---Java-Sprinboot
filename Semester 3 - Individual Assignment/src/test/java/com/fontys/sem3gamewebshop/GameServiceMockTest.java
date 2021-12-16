@@ -71,28 +71,28 @@ public class GameServiceMockTest {
     }
 
 
-    @Test
-    public void changeGamePlayType(){
-        GameService gameService = new GameService(gameDAL, iAppUserDAL, gameConverter);
-        List<Game> games = gameService.getGames();
-        Game game = games.get(0);
-        game.setGamePlayType(GamePlayType.Multiplayer);
-        Assertions.assertEquals(game.getGamePlayType(), GamePlayType.Multiplayer);
-
-    }
+//    @Test
+//    public void changeGamePlayType(){
+//        GameService gameService = new GameService(gameDAL, iAppUserDAL, gameConverter);
+//        List<Game> games = gameService.getGames();
+//        Game game = games.get(0);
+//        game.setGamePlayType(GamePlayType.Multiplayer);
+//        Assertions.assertEquals(game.getGamePlayType(), GamePlayType.Multiplayer);
 //
-//
-    @Test
-    public void saveGame(){
-        GameService gameService = new GameService(gameDAL, iAppUserDAL, gameConverter);
-        AppUser ivanTest = new AppUser(null, "Ivan Test", "ivantest", "ivan@gmail.com", "12345", new ArrayList<>(), new ArrayList<>());
-        GameDTO game = new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.Multiplayer,new ArrayList<>(),"A true classic, enjoy the beauty of jumping on goombas and saving the princess!");
-        gameService.saveGame(game);
-        ArgumentCaptor<Game> gameArgumentCaptor = ArgumentCaptor.forClass(Game.class);
-        verify(gameDAL).saveGame(gameArgumentCaptor.capture());
-        Game captureGame = gameArgumentCaptor.getValue();
-        Assertions.assertEquals(game.getGameName(), captureGame.getGameName());
-    }
+//    }
+////
+////
+//    @Test
+//    public void saveGame(){
+//        GameService gameService = new GameService(gameDAL, iAppUserDAL, gameConverter);
+//        AppUser ivanTest = new AppUser(null, "Ivan Test", "ivantest", "ivan@gmail.com", "12345", new ArrayList<>(), new ArrayList<>());
+//        GameDTO game = new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.Multiplayer,new ArrayList<>(),"A true classic, enjoy the beauty of jumping on goombas and saving the princess!");
+//        gameService.saveGame(game);
+//        ArgumentCaptor<Game> gameArgumentCaptor = ArgumentCaptor.forClass(Game.class);
+//        verify(gameDAL).saveGame(gameArgumentCaptor.capture());
+//        Game captureGame = gameArgumentCaptor.getValue();
+//        Assertions.assertEquals(game.getGameName(), captureGame.getGameName());
+//    }
 //
 //    @Test
 //    public void getGameByGameType(){
