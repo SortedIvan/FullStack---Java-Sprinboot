@@ -1,4 +1,4 @@
-import "cypress-localstorage-commands";
+
 describe("renders the about us page", () =>{
 
     beforeEach(() => {

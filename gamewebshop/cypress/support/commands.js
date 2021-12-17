@@ -44,7 +44,6 @@ import "cypress-localstorage-commands";
 //     LOCAL_STORAGE_MEMORY = {};
 //   });
 
-import "cypress-localstorage-commands";
 
 // Cypress.Commands.add('loginAs', (Username, UserPwd) => {
 //   cy.request({
