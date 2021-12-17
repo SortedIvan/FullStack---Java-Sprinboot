@@ -3,12 +3,6 @@ import React from 'react';
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import authService from "../../services/auth.service";
-// import Card from '../UI/Card';
-// import {Card, Button, CardGroup} from 'react-bootstrap';
-// import Link from '@mui/material/Link';
-// import unnamed from '.../public/unnamed.png'
-import PositionedSnackbar from '../alerts/PositionedSnackbar';
-import Snackbar from '@mui/material/Snackbar';
 import { useHistory } from "react-router-dom";
 import GameService from "../../services/GameService";
 import Container from '@mui/material/Container';
@@ -81,19 +75,9 @@ import Container from '@mui/material/Container';
   
     let menu = '';
 
-  // if(isLoggedIn === false){
-  //     menu = (
-  //       <Fragment>
-  //       <Form.Group>
-  //       <Form.Label>Email </Form.Label>
-  //       <Form.Control type="email" placeholder="Write your email..." />
-  //       </Form.Group>
-  //       </Fragment>
-  //     )
-  // } 
   if(isLoggedIn === true) {
       menu = (
-        <Fragment>
+        <Fragment id = "detailsOfGame">
         <Form.Label><b>Please input the details of your game:</b> </Form.Label> <br/>
         </Fragment>
       )
@@ -112,33 +96,33 @@ import Container from '@mui/material/Container';
         </Form.Group>
         <Form.Group>
         <Form.Label>Game name</Form.Label>
-        <Form.Control type="text" ref={gameName} placeholder="Write a game name..." required/>
+        <Form.Control id = "gameName" type="text" ref={gameName} placeholder="Write a game name..." required/>
         </Form.Group>
         <br/>
         <Form.Group>
         <Form.Label>Game size</Form.Label>
-        <Form.Control type="text" ref={gameSize} placeholder="Game size: " required/>
+        <Form.Control id = "gameSize" type="text" ref={gameSize} placeholder="Game size: " required/>
         </Form.Group>
         <br/>
         <Form.Group>
         <Form.Label>Game price</Form.Label>
-        <Form.Control type="text" ref={gamePrice} placeholder="Game price: " required/>
+        <Form.Control id = "gamePrice" type="text" ref={gamePrice} placeholder="Game price: " required/>
         </Form.Group>
         <br/>
         <Form.Group>
         <Form.Label>Game play type: </Form.Label>
-        <Form.Control type="text" ref={gamePlayType} placeholder="Game play type: " required/>
+        <Form.Control id = "gamePlayType" type="text" ref={gamePlayType} placeholder="Game play type: " required/>
         </Form.Group>
         <br/>
         <Form.Group>
         <Form.Label>Game description: </Form.Label>
-        <Form.Control type="text" ref={description} placeholder="Game description: " required/>
+        <Form.Control id = "gameDescription" type="text" ref={description} placeholder="Game description: " required/>
         </Form.Group>
         <br/>
         <Form.Label>Genre: </Form.Label>
           <br />
           <Form.Group>
-          <Form.Control as="select" onChange={handleChangeGenre} required>
+          <Form.Control id = "genre" as="select" onChange={handleChangeGenre} required>
             <option value=""> -- Select a play type -- </option>
             {gameTypes.map((option, index) => (
               <option key={index} value={option} ref={gamePlayVariant}>
@@ -148,7 +132,7 @@ import Container from '@mui/material/Container';
           </Form.Control>
         </Form.Group>
         <br/>
-        <Button variant="primary" type="submit">
+        <Button id = "createGame" variant="primary" type="submit">
           Submit
         </Button>
       </Form>

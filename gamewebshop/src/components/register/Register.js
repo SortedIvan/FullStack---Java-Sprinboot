@@ -144,6 +144,7 @@ export default class Register extends Component {
                     value={this.state.username}
                     onChange={this.onChangeUsername}
                     validations={[required, vusername]}
+                    id = "registerUsername"
                   />
                 </div>
 
@@ -156,6 +157,7 @@ export default class Register extends Component {
                     value={this.state.email}
                     onChange={this.onChangeEmail}
                     validations={[required, email]}
+                    id = "registerEmail"
                   />
                 </div>
 
@@ -168,11 +170,12 @@ export default class Register extends Component {
                     value={this.state.password}
                     onChange={this.onChangePassword}
                     validations={[required, vpassword]}
+                    id = "registerPassword"
                   />
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                  <button className="btn btn-primary btn-block" id = "signUpButton">Sign Up</button>
                 </div>
               </div>
             )}

@@ -34,17 +34,17 @@ const SignIn = () => {
                 <form onSubmit={handleLogin}>
                 <h3>Sign In</h3>
 
-                <div className="form-group">
+                <div className="form-group" id = "usernameInput">
                     <label>Username </label>
                     <input type="text" className="form-control" placeholder="Enter your username" ref={username}/>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" id = "passwordInput">
                     <label>Password</label>
                     <input type="password" className="form-control" placeholder="Enter your password" ref={password}/>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group" id = "rememberMe">
                     <div className="custom-control custom-checkbox">
                         <input type="checkbox" className="custom-control-input" id="customCheck1" />
                         <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
@@ -52,7 +52,7 @@ const SignIn = () => {
                 </div>
                 
                 <br></br>
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" className="btn btn-primary btn-block" id = "loginButton">Submit</button>
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>

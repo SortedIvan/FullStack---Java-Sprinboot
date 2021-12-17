@@ -51,12 +51,12 @@ function LogOut(){
     menu = (
       <Fragment>
         <Nav>
-          <Button style={{ float: "right" }} href="/login">
+          <Button style={{ float: "right" }} href="/login" id = "loginButton">
             Sign in
           </Button>
           &nbsp;&nbsp;
           <br />
-          <Button style={{ float: "right" }} href="/register">
+          <Button style={{ float: "right" }} href="/register" id = "registerButton">
             Register
           </Button>
           &nbsp;&nbsp;
@@ -84,7 +84,7 @@ function LogOut(){
           <br />
           </Nav>
           <Nav>
-          <Button href="/sign-out" onClick = {LogOut}>Sign out</Button>
+          <Button href="/sign-out" onClick = {LogOut} id = "SignOutButton">Sign out</Button>
           &nbsp;&nbsp;
           <br />
         </Nav>
@@ -98,17 +98,17 @@ function LogOut(){
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: "200px"}}
               navbarScroll>
-            <Nav.Link href = "/mygames"> My Games</Nav.Link>
+            <Nav.Link href = "/mygames" id = "myGames"> My Games</Nav.Link>
             &nbsp;&nbsp;
-            <Nav.Link href="/complaints">Send a complaint</Nav.Link>
+            <Nav.Link href="/complaints"id = "sendComplaint">Send a complaint</Nav.Link>
          </Nav>
         <Nav>
-          <Button href="/profile">Your account</Button>
+          <Button href="/profile" id = "yourAccount">Your account</Button>
           &nbsp;&nbsp;
           <br />
           </Nav>
           <Nav>
-          <Button href="/sign-out"  onClick = {LogOut} >Sign out</Button>
+          <Button href="/sign-out"  onClick = {LogOut} id = "signOut" >Sign out</Button>
           &nbsp;&nbsp;
           <br />
         </Nav>
@@ -133,7 +133,7 @@ function LogOut(){
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Nav.Link href="/AboutUs">About us</Nav.Link>
               <Nav.Link href="/games">All Games</Nav.Link>
-              <Nav.Link href="/creategame">Add your own game</Nav.Link>
+              <Nav.Link href="/creategame" id = "createGame">Add your own game</Nav.Link>
               <Nav.Link href = "/chat">Chat</Nav.Link>
            
             </Nav>

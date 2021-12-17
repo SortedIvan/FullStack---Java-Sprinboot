@@ -64,7 +64,7 @@ function GameItem(props){
                     <BasicRating/>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" onClick = {togglePopup}>Does <br/> it run?</Button>
+                    <Button size="small" onClick = {togglePopup} id = "systemRequirements">Does <br/> it run?</Button>
                     {isOpen && <Popup id = "systemrequirements"
                       content={<>
                        <b>System requirements</b>
@@ -72,7 +72,7 @@ function GameItem(props){
                         {props.game.systemRequirements}
                       </>}
                       />}
-                    <Button size="small" onClick={handleClick({
+                    <Button id = "getGame" size="small" onClick={handleClick({
                        vertical: 'top',
                         horizontal: 'center',
                         })}>Get game!</Button>

@@ -54,19 +54,11 @@ const columns = [
     }
   },
   ];
-
-//   function deleteMovie(id) {
-//     const newMovies = [...movies];
-//     const index = newMovies.indexOf(id);
-//     newMovies.splice(index, 1);
-//     MovieService.deleteMovie(id);
-//     setMovies(newMovies);
-//   }
   
   function handleClick(mode, selected){
     switch(mode){
       case 0:
-        window.history.pushState({}, '', "/movie/"+selected.row.id);
+        window.history.pushState({}, '', "/game/"+selected.row.id);
         break;
       default:
         window.history.pushState((selected.row.id));
@@ -112,7 +104,8 @@ const columns = [
           rowsPerPageOptions={[5]}
           disableColumnSelector
           disableMultipleSelection={true}
-          disableSelectionOnClick={true} />
+          disableSelectionOnClick={true} 
+          id = "gameDataGrid"/>
               
    
     </div>

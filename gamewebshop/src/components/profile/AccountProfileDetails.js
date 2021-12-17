@@ -77,6 +77,7 @@ import authService from '../../services/auth.service';
             color="textPrimary"
             gutterBottom
             variant="h5"
+            id = "profileName"
           >
             {profile.name}
           </Typography>
@@ -92,6 +93,7 @@ import authService from '../../services/auth.service';
       <Divider />
       <CardActions>
         <Button
+        id = "uploadPicture"
           color="primary"
           fullWidth
           variant="text"
@@ -121,6 +123,7 @@ import authService from '../../services/auth.service';
                 name="name"
                 onChange={handleChange}
                 value={profile.name}
+                id = "profileNameInput"
           
               />
             </Grid>
@@ -139,6 +142,7 @@ import authService from '../../services/auth.service';
                 onChange={handleChange}
                 readonly
                 value={profile.username}
+                id = "profileNameUsername"
               />
             </Grid>
             <Grid
@@ -155,6 +159,7 @@ import authService from '../../services/auth.service';
                 name="email"
                 onChange={handleChange}
                 value={profile.email}
+                id = "profileNameEmail"
               />
             </Grid>
             <Grid
@@ -188,6 +193,7 @@ import authService from '../../services/auth.service';
           <Button
             color="primary"
             variant="contained"
+            id = "saveAccount"
           >
             Save
           </Button>

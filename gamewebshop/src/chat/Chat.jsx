@@ -49,7 +49,7 @@ function Chat() {
     <div className="App">
     <br></br>
     <input onChange={(event) => setSendMessage(event.target.value)}></input>
-    <button  onClick={sendMessage}>Send Message</button>
+    <button  onClick={sendMessage} id = "sendMessage">Send Message</button>
   </div>
   );
 
