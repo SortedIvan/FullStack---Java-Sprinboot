@@ -2,12 +2,8 @@
 describe("renders the user page", () =>{
     beforeEach(() => {
         cy.login("boriz1", "12345");
-        cy.saveLocalStorage();
       })
 
-      beforeEach(() => {
-        cy.restoreLocalStorage();
-      });
       
     it("gets the user table correctly", ()=>{
         cy.visit("/AboutUs")

@@ -2,13 +2,8 @@
 describe("renders the game page", () =>{
     beforeEach(() => {
         cy.login("ivantest", "12345");
-        cy.saveLocalStorage();
       })
 
-      beforeEach(() => {
-        cy.restoreLocalStorage();
-      });
-      
     it("can load the game table succesfully", ()=>{
         cy.visit("/AboutUs")
         cy.get('[href="/mygames"]').click();

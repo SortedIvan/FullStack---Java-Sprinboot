@@ -3,12 +3,8 @@ describe("renders the about us page", () =>{
 
     beforeEach(() => {
         cy.login("boriz1","12345");
-        cy.saveLocalStorage();
       });
     
-      beforeEach(() => {
-        cy.restoreLocalStorage();
-      });
       
     it("renders correctly", ()=>{
         cy.visit("/AboutUs")

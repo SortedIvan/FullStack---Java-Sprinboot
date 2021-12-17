@@ -2,12 +2,9 @@
 describe("renders the game page", () =>{
     beforeEach(() => {
         cy.login("boriz1", "12345");
-        cy.saveLocalStorage();
+
       })
 
-      beforeEach(() => {
-        cy.restoreLocalStorage();
-      });
       
     
     it("is possible to add games successfuly", ()=>{
