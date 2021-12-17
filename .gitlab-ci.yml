@@ -8,6 +8,13 @@
 # https://gradle.org/
 # https://github.com/gradle/gradle
  
+
+stages:
+  - build
+  - test
+  - postman_tests
+  - cypress_tests
+  - sonarqube
 image: gradle:alpine
  
 # Disable the Gradle daemon for Continuous Integration servers as correctness
@@ -43,14 +50,20 @@ test:
       - .gradle
 
 postman_tests:
-    stage: test
+    stage: postman_tests
     script:
       - cd C:\Users\ivano\AppData\Roaming\npm
-      - ./newman run https://www.getpostman.com/collections/21b756c7404b6d42f0d4
+      - ./newman run https://www.getpostman.com/collections/5edef22e38bb35d4aefd
 
-
+cypress_tests:
+    stage: cypress_tests
+    image: cypress/base:10
+    script:
+    - cd gamewebshop
+    - npx cypress run
 
 sonarqube-check:
+  stage: sonarqube
   image: gradle:jre11-slim
   variables:
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
