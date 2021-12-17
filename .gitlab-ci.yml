@@ -59,7 +59,7 @@ cypress_tests:
     stage: cypress_tests
     image: cypress/base:10
     script:
-    - cd reactapp
+    - cd gamewebshop
     - npx cypress run
 
 sonarqube-check:
