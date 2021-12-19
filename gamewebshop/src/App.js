@@ -18,9 +18,11 @@ import ProfilePage from "./components/profile/ProfilePage";
 import { AccountProfile } from "./components/profile/AccountProfile";
 import { AccountProfileDetails } from "./components/profile/AccountProfileDetails";
 import MyGames from "./components/game/MyGames";
-import Chat from "./chat/Chat";
+// import Chat from "./chat/Chat";
 import ChatComponent from "./chat/ChatComponent";
 import GameTable from "./components/game/GameTable";
+import Chatbot from "react-chatbot-kit";
+import ChatBotComponent from "./ChatBot/ChatBotComponent";
 export default class App extends Component {
   render() {
     return (
@@ -38,7 +40,10 @@ export default class App extends Component {
         <Route path = "/mygames" component = {GameTable}/>
         <Route path = "/chat" component = {ChatComponent}/>
         <Route path = "/u" component = {GameTable}/>
+        <Route path = "/chatbot" component={ChatBotComponent}/>
+
         </Switch>
+
 
 
         

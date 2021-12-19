@@ -1,7 +1,6 @@
 import React from 'react'
 
 import PropTypes from 'prop-types'
-
 import projectStyles from './style.module.css'
 import styles from './hero.module.css'
 import { useHistory } from "react-router";

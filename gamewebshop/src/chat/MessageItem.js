@@ -4,12 +4,15 @@ import {
     CardHeader,
     Grid
   } from '@mui/material';
+import NotFound from '../components/notfound/NotFound';
 
 function MessageItem(props){
 
     let activeUser = JSON.parse(localStorage.getItem('user'));
 
-
+    if(props.msg.sender === null){
+        return <NotFound/>
+    }
     if(activeUser.user === props.msg.sender){
         return (    
             <Grid item xs={12}  align="right">
