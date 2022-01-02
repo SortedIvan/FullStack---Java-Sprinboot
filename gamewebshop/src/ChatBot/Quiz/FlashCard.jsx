@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import "./Quiz.css";
+import "../Quiz/quiz.css";
 
-const FlashCard = ({ question, answer, incrementIndex }) => {
+function FlashCard ({ question, answer, incrementIndex }) {
   const [showAnswer, setShowAnswer] = useState(false);
 
   useEffect(() => setShowAnswer(false), [question]);

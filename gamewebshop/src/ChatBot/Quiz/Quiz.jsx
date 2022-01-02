@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import FlashCard from "./FlashCard";
+// import FlashCard from "./FlashCard";
+import FlashCard from "C:/Users/ivano/OneDrive/Desktop/GIt File Uploads/semester3-individual-assignment/gamewebshop/src/ChatBot/Quiz/FlashCard.jsx";
 
 const Quiz = (props) => {
   console.log(props);
@@ -15,11 +16,12 @@ const Quiz = (props) => {
 
   return (
     <FlashCard
-      question={currentQuestion.question}
-      answer={currentQuestion.answer}
-      incrementIndex={incrementIndex}
-      
-    />
+    question={currentQuestion.question}
+    answer={currentQuestion.answer}
+    incrementIndex={incrementIndex}
+    
+  />
+    
   );
 };
 

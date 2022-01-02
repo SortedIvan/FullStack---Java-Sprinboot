@@ -5,7 +5,7 @@ describe("renders the game page", () =>{
 
       })
 
-      
+
     
     it("is possible to add games successfuly", ()=>{
         cy.visit("/games")

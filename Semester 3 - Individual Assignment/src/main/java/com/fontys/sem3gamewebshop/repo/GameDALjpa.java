@@ -36,9 +36,6 @@ public class GameDALjpa implements IGameDAL {
 
     @Override
     public void addTypeGameToGame(String gameName, String typeGame) {
-//        Game game = gameRepo.findByGameName(gameName);
-//        TypeGame typeGame1 = typeGameRepo.findByName(typeGame);
-//        game.getGameTypes().add(typeGame1);
     }
 
 
@@ -84,18 +81,6 @@ public class GameDALjpa implements IGameDAL {
         return gameRepo.FindGamesByUserID(id);
     }
 
-//    @Override
-//    public List<Game> GetGamesByName(String name) {
-//        List<Game> games = this.gameRepo.findAll();
-//        List<Game> returnGames = new ArrayList<>();
-//        for (Game game : games){
-//            if(game.getGameName().equals(name)){
-//                returnGames.add(game);
-//            }
-//        }
-//        return returnGames;
-//    }
-//
 @Override
 public List<Game> GetGamesByName(String name) {
     List<Game> games = this.gameRepo.findAll();
