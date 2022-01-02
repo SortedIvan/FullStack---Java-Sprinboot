@@ -11,10 +11,11 @@
 
 stages:
   - build
+  - sonarqube
   - test
   - postman_tests
   - cypress_tests
-  - sonarqube
+  
 image: gradle:alpine
  
 # Disable the Gradle daemon for Continuous Integration servers as correctness
