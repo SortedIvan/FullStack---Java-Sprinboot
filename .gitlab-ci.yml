@@ -11,10 +11,10 @@
 
 stages:
   - build
-  - sonarqube
   - test
   - postman_tests
   - cypress_tests
+  - sonarqube
   - docker
   
 image: gradle:alpine
