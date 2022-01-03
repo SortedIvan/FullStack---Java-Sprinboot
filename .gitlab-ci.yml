@@ -15,6 +15,7 @@ stages:
   - test
   - postman_tests
   - cypress_tests
+  - docker
   
 image: gradle:alpine
  
@@ -80,4 +81,19 @@ cypress_tests:
     script:
     - cd gamewebshop
     - npx cypress run
+
+
+
+docker: 
+    stage: docker
+    script: 
+    - cd gamewebshop
+    - docker build -t frontend .
+    - cd ..
+    - cd "Semester 3 - Individual Assignment"
+    - replace "C:\Users\ivano\OneDrive\Desktop\GIt File Uploads\semester3-individual-assignment\Semester 3 - Individual Assignment\override\prod\application.properties" "C:\Users\ivano\OneDrive\Desktop\GIt File Uploads\semester3-individual-assignment\Semester 3 - Individual Assignment\src\main\resources"
+    - ./gradlew build -x test
+    - docker build -t backend .
+    - replace "C:\Users\ivano\OneDrive\Desktop\GIt File Uploads\semester3-individual-assignment\Semester 3 - Individual Assignment\override\test\application.properties" "C:\Users\ivano\OneDrive\Desktop\GIt File Uploads\semester3-individual-assignment\Semester 3 - Individual Assignment\src\main\resources"
+    - ./gradlew.bat --stop
 
