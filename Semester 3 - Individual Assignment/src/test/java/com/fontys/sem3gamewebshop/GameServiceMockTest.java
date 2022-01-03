@@ -10,13 +10,11 @@ import com.fontys.sem3gamewebshop.service.GameService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -27,7 +25,6 @@ public class GameServiceMockTest {
     IGameDAL gameDAL;
     @Mock
     IAppUserDAL iAppUserDAL;
-    //null, "Mario", "Adventure", 500, 19.99, GamePlayType.SinglePlayer, ivanTest, new ArrayList()
     @Mock
     GameConverter gameConverter;
 
