@@ -31,5 +31,9 @@ import authHeader from "./auth-header";
     getGamesByname(name){
         return axios.get("http://localhost:8080/api/games/find/"+ name, {headers:authHeader()});
     }
+
+    getRandomNumber(){
+        return Math.floor((Math.random() * 10) + 1);
+    }
 }
     export default new GameService;

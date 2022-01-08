@@ -135,6 +135,7 @@ function LogOut(){
               <Nav.Link href="/games">All Games</Nav.Link>
               <Nav.Link href="/creategame" id = "createGame">Add your own game</Nav.Link>
               <Nav.Link href = "/chat">Chat</Nav.Link>
+              <Nav.Link href = "/chatbot">ChatBot</Nav.Link>
            
             </Nav>
 
