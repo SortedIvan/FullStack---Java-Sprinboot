@@ -81,6 +81,10 @@ public class GameController {
         return ResponseEntity.ok().body(iGameService.GetGamesByName(name));
     }
 
+    @GetMapping("/games/filter/{name}")
+    public ResponseEntity<List<Game>> findGamesByName(@PathVariable("name") String name){
+        return ResponseEntity.ok().body(iGameService.findAllByGameName(name));
+    }
 
 }
 

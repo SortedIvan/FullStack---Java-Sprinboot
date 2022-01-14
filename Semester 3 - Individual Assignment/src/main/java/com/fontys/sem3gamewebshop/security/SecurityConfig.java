@@ -67,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(PUT, "/api/user/edit").permitAll();
         http.authorizeRequests().antMatchers(GET, "/api/game/mygames/**").permitAll();
         http.authorizeRequests().antMatchers("/chat/**").permitAll();
+        http.authorizeRequests().antMatchers("/games/filter/**").permitAll();
         http.authorizeRequests().antMatchers("/api/games/find/**").permitAll();
 
 

@@ -84,4 +84,9 @@ public class GameDALjpa implements IGameDAL {
     public List<Game> GetGamesByName(String name) {
         return gameRepo.GetGamesByName(name);
     }
+
+    @Override
+    public List<Game> findAllByGameName(String gameName) {
+        return gameRepo.findAllByGameName(gameName);
+    }
 }

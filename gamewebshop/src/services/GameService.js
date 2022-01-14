@@ -32,6 +32,10 @@ import authHeader from "./auth-header";
         return axios.get("http://localhost:8080/api/games/find/"+ name, {headers:authHeader()});
     }
 
+    findGamesByName(name){
+        return axios.get("http://localhost:8080/api/games/filter/"+ name, {headers:authHeader()});
+    }
+
     getRandomNumber(){
         return Math.floor((Math.random() * 10) + 1);
     }

@@ -17,5 +17,6 @@ public interface IGameService {
     List<GamePlayType> GetAllPlayTypes();
     List<Game> GetGamesByUser(Long id);
     List<Game> GetGamesByName(String name);
+    List<Game> findAllByGameName(String gameName);
 
 }

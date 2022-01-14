@@ -19,5 +19,7 @@ public interface GameRepo extends JpaRepository<Game, Long> {
             nativeQuery = true)
     List<Game> GetGamesByName(String gameName);
 
+    List<Game> findAllByGameName(String gameName);
+
 
 }

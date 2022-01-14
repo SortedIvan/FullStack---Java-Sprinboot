@@ -24,9 +24,16 @@ function GamePage() {
       }
 
       function FindGamesByName(gameName){
-        const newGames = [...games];
-        GameService.getGamesByname(gameName);
-        setGames(newGames);
+          if(gameName === ""){
+            GameService.getAllGames().then((response) => {
+                console.log(response.data);
+                setGames(response.data);
+              });
+            
+          }
+        GameService.getGamesByname(gameName).then((response) => {
+            setGames(response.data);
+          });
     }
 
       if(games === null){

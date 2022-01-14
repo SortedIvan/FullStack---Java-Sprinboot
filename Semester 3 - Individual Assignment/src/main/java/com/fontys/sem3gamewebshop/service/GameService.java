@@ -69,6 +69,11 @@ public class GameService implements IGameService{
     }
 
     @Override
+    public List<Game> findAllByGameName(String gameName) {
+        return gameDal.findAllByGameName(gameName);
+    }
+
+    @Override
     public TypeGame saveTypeGame(TypeGame typeGame) {
         log.info("Saving new type of game {} to db", typeGame.getName());
         return gameDal.saveTypeGame(typeGame);
