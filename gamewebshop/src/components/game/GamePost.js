@@ -34,6 +34,7 @@ import Container from '@mui/material/Container';
     const history = useHistory();
 
      const handleChangeGenre = (e) => {
+      
       let obj = e.target.value; //genre object
       console.log(obj);
       setSelectedType(obj);
@@ -126,6 +127,7 @@ import Container from '@mui/material/Container';
             <option value=""> -- Select a play type -- </option>
             {gameTypes.map((option, index) => (
               <option key={index} value={option} ref={gamePlayVariant}>
+                
                 {option}
               </option>
             ))}

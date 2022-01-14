@@ -3,6 +3,7 @@ version: '3'
 services:
   docker-mysql:
     image: mysql
+    container_name: database
     environment:
       - MYSQL_ROOT_PASSWORD=00000000
       - MYSQL_DATABASE=gamewebshop
@@ -12,6 +13,7 @@ services:
 
   app:
     image: backend
+    container_name: backend
     ports:
       - "8080:8080"
     environment:

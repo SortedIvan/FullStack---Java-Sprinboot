@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-// import FlashCard from "./FlashCard";
-import FlashCard from "C:/Users/ivano/OneDrive/Desktop/GIt File Uploads/semester3-individual-assignment/gamewebshop/src/ChatBot/Quiz/FlashCard.jsx";
+import FlashCard from "./FlashCard";
+
 
 const Quiz = (props) => {
   console.log(props);

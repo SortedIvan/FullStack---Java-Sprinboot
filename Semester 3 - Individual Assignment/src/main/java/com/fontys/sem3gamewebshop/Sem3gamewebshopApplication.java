@@ -49,18 +49,10 @@ public class Sem3gamewebshopApplication {
             iUserService.addRoleToUser("boriz1", "ROLE_USER");
             iUserService.addRoleToUser("ivantest", "ROLE_ADMIN");
 
-            List<String> systemRequirements1 = List.of(
-              "2GB free space"
-            );
-            List<String> systemRequirements2 = List.of(
-              "6GB free space"
-            );
-            List<String> systemRequirements3 = List.of(
-                    "8GB free space"
-            );
-            igameService.saveGame(new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.SinglePlayer,systemRequirements1,"A true classic, enjoy the beauty of jumping on goombas and saving the princess!"));
-            igameService.saveGame(new GameDTO("Rust", 500, 40, "Survival", ivanTest.getUsername(), GamePlayType.Multiplayer,systemRequirements2, "Rust - naked, scared..and a rock in your hands?"));
-            igameService.saveGame(new GameDTO("Zelda", 1000, 20, "Adventure", ivanTest.getUsername(), GamePlayType.SinglePlayer,systemRequirements3,"For sword lovers, this game will let you embark on epic quests in the land of Zelda!"));
+
+            igameService.saveGame(new GameDTO("Mario", 300, 25, "Adventure", ivanTest.getUsername(), GamePlayType.SinglePlayer,"A true classic, enjoy the beauty of jumping on goombas and saving the princess!"));
+            igameService.saveGame(new GameDTO("Rust", 500, 40, "Survival", ivanTest.getUsername(), GamePlayType.Multiplayer, "Rust - naked, scared..and a rock in your hands?"));
+            igameService.saveGame(new GameDTO("Zelda", 1000, 20, "Adventure", ivanTest.getUsername(), GamePlayType.SinglePlayer,"For sword lovers, this game will let you embark on epic quests in the land of Zelda!"));
 
 
             //Game creation

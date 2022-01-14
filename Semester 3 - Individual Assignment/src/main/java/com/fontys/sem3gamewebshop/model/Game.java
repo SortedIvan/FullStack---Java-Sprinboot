@@ -36,9 +36,6 @@ public class Game {
     private AppUser appUser;
 
 
-    @ElementCollection
-    private Collection<String> systemRequirements = new ArrayList<>();
-
 
 
     @Override

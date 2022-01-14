@@ -21,6 +21,5 @@ public class GameDTO {
     private String gameType;
     private String appUser;
     private GamePlayType gamePlayVariant;
-    private Collection<String> systemRequirements = new ArrayList<>();
     private String description;
 }
