@@ -14,8 +14,6 @@ function ChatBotComponent(){
         messageParser={MessageParser}
         
         />
-
-
         </Container>
 
 

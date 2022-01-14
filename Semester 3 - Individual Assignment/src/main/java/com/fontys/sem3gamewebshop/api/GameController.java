@@ -5,11 +5,9 @@ import com.fontys.sem3gamewebshop.model.*;
 import com.fontys.sem3gamewebshop.service.IGameService;
 import com.fontys.sem3gamewebshop.service.IUserService;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -36,11 +34,6 @@ public class GameController {
         return ResponseEntity.ok().body(iGameService.getGames());
     }
 
-//    @PostMapping("/game/save")
-//    public ResponseEntity<GameDTO> saveGames(@RequestBody GameDTO game){
-//        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/game/save").toUriString());
-//        return ResponseEntity.created(uri).body(iGameService.saveGame(game));
-//    }
     @PostMapping("/savegame")
     public ResponseEntity<GameDTO> saveGame(@RequestBody GameDTO game){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

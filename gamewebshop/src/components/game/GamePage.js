@@ -23,6 +23,12 @@ function GamePage() {
           setGames(newGames);
       }
 
+      function FindGamesByName(gameName){
+        const newGames = [...games];
+        GameService.getGamesByname(gameName);
+        setGames(newGames);
+    }
+
       if(games === null){
           return null;
       }
@@ -30,9 +36,8 @@ function GamePage() {
     return (
         <div id="allGames">
             
-            <CardDeck><GameList games ={games} onDelete = {DeleteGame}></GameList></CardDeck>
-            
-            </div>   
+            <CardDeck><GameList games ={games} onDelete = {DeleteGame} onSearch = {FindGamesByName}></GameList></CardDeck>
+        </div>   
         
 
     )

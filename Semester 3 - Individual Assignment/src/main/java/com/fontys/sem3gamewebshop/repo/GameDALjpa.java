@@ -7,7 +7,6 @@ import com.fontys.sem3gamewebshop.model.TypeGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,15 +80,8 @@ public class GameDALjpa implements IGameDAL {
         return gameRepo.FindGamesByUserID(id);
     }
 
-@Override
-public List<Game> GetGamesByName(String name) {
-    List<Game> games = this.gameRepo.findAll();
-    List<Game> returnGames = new ArrayList<>();
-    for (Game game : games){
-        if(game.getGameName().contains(name)){
-            returnGames.add(game);
-        }
+    @Override
+    public List<Game> GetGamesByName(String name) {
+        return gameRepo.GetGamesByName(name);
     }
-    return returnGames;
-}
 }
