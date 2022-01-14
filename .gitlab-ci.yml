@@ -73,7 +73,7 @@ postman_tests:
     stage: postman_tests
     script:
       - cd C:\Users\ivano\AppData\Roaming\npm
-      - ./newman run https://www.getpostman.com/collections/6335ad1e5e197857f535
+      - ./newman run https://www.getpostman.com/collections/b1706ee4228749b2015e
 
 cypress_tests:
     stage: cypress_tests
